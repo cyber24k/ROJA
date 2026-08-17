@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ROJA - Zimbabwe's premium rental marketplace matching verified hosts with tenants for short-term BnBs and long-term house leases.">
+  <title>ROJA | Zimbabwe's Premium Rental Marketplace</title>
+  
+  <!-- CSS Styling -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container nav-container">
+      <!-- Logo -->
+      <a href="#" class="logo" id="logo-btn" aria-label="ROJA Home">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
+          <path d="M16 1C20.5 1 24.5 4.5 24.5 9.5C24.5 13 22 17.5 16 23.5C10 17.5 7.5 13 7.5 9.5C7.5 4.5 11.5 1 16 1ZM16 6.5C14.3 6.5 13 7.8 13 9.5C13 11.2 14.3 12.5 16 12.5C17.7 12.5 19 11.2 19 9.5C19 7.8 17.7 6.5 16 6.5ZM16 26.5C21 26.5 28.5 28.5 29.5 31H2.5C3.5 28.5 11 26.5 16 26.5Z" />
+        </svg>
+        <span>ROJA</span>
+      </a>
+
+      <!-- Mini Search Bar (Hidden on Mobile) -->
+      <div class="header-search" id="mini-search-btn">
+        <span>Zimbabwe</span>
+        <span>Short & Long Term</span>
+        <span>Add guests</span>
+        <button class="header-search-btn" aria-label="Search">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="4">
+            <circle cx="14" cy="14" r="9"/>
+            <line x1="21" y1="21" x2="30" y2="30"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- User controls -->
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+          <!-- Sun/Moon Icon loaded dynamically via JS -->
+          <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor">
+            <path d="M16 8a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/>
+          </svg>
+        </button>
+        <button class="host-toggle-btn" id="switch-perspective-btn">Switch to Hosting</button>
+        
+        <div class="user-menu-wrapper">
+          <button class="user-menu-btn" id="user-menu-trigger" aria-label="User Menu">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="3" y1="8" x2="29" y2="8"/>
+              <line x1="3" y1="16" x2="29" y2="16"/>
+              <line x1="3" y1="24" x2="29" y2="24"/>
+            </svg>
+            <div class="user-avatar flex-center">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
+                <path d="M16 14c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2c-4.4 0-13 2.2-13 6.6V26c0 1.1.9 2 2 2h22c1.1 0 2-.9 2-2v-3.4c0-4.4-8.6-6.6-13-6.6z"/>
+              </svg>
+            </div>
+          </button>
+
+          <!-- Dropdown items -->
+          <div class="user-dropdown" id="user-dropdown-menu">
+            <ul>
+              <li><button class="highlight" id="dropdown-login-btn">Log In / Sign Up</button></li>
+              <li><button id="dropdown-host-btn">List Your Property</button></li>
+              <li><a href="#help">Help Center</a></li>
+              <li><button id="dropdown-logout-btn" style="display: none; color: var(--primary);">Log Out</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="container">
+    
+    <!-- TENANT PERSPECTIVE VIEW -->
+    <section id="tenant-view" class="view-section active">
+      <!-- Hero Banner -->
+      <div class="hero">
+        <div class="hero-content">
+          <h2>Find your next home in Zimbabwe.</h2>
+          <p>Explore BnBs for quick trips and long-term rental houses for monthly or yearly leases.</p>
+        </div>
+      </div>
+
+      <!-- Search Widget Container -->
+      <div class="search-widget-container">
+        <form class="search-widget" id="search-form">
+          <div class="search-field">
+            <label for="search-location">Where</label>
+            <input type="text" id="search-location" placeholder="Search cities (Harare, Vic Falls...)" autocomplete="off">
+          </div>
+          <div class="search-field">
+            <label for="search-term">Term</label>
+            <select id="search-term">
+              <option value="any">Any Term</option>
+              <option value="short">BnB (Daily)</option>
+              <option value="long">Lease (Monthly)</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="search-checkin">Start Date</label>
+            <input type="date" id="search-checkin">
+          </div>
+          <div class="search-field">
+            <label for="search-checkout">End Date</label>
+            <input type="date" id="search-checkout">
+          </div>
+          <div class="search-field">
+            <label for="search-guests">Who</label>
+            <select id="search-guests">
+              <option value="1">1 guest</option>
+              <option value="2">2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4+ guests</option>
+            </select>
+          </div>
+          <button type="submit" class="search-btn" aria-label="Search Submit">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="4">
+              <circle cx="14" cy="14" r="9"/>
+              <line x1="21" y1="21" x2="30" y2="30"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Filter Categories Tab bar (Zimbabwean Styles) -->
+      <div class="categories-filter-bar" id="category-filter-tabs">
+        <!-- Suburban Tab -->
+        <button class="category-tab active" data-category="suburban">
+          <svg viewBox="0 0 32 32" width="24" height="24">
+            <path d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z M25,26h-4v-8H11v8H7V12.8l9-7.9,9,7.9V26z"/>
+          </svg>
+          <span>Suburbs</span>
+        </button>
+
+        <!-- Stays Tab (BnBs) -->
+        <button class="category-tab" data-category="stays">
+          <svg viewBox="0 0 32 32" width="24" height="24">
+            <circle cx="16" cy="12" r="4"/>
+            <path d="M2 28a14 14 0 0 1 28 0H2z"/>
+          </svg>
+          <span>BnBs / Suites</span>
+        </button>
+
+        <!-- Highlands / Nyanga Tab -->
+        <button class="category-tab" data-category="highlands">
+          <svg viewBox="0 0 32 32" width="24" height="24">
+            <path d="M30,12.4l-14-11L2,12.4l1.2,1.6L5,12.6V28c0,1.1,.9,2,2,2h18c1.1,0,2-.9,2-2V12.6l1.8,1.4,1.2-1.6z M25,28H7V11l9-7.1,9,7.1V28z"/>
+          </svg>
+          <span>Highlands / Cabins</span>
+        </button>
+
+        <!-- Waterfront / Resort Tab -->
+        <button class="category-tab" data-category="waterfront">
+          <svg viewBox="0 0 32 32" width="24" height="24">
+            <path d="M2.3,23.7C4.1,21.8,7,21.3,9,22.6c2,1.3,4.7,1,6.5-.8c1.8-1.8,4.7-2,6.5-.8c2,1.3,4.7,1,6.5-.8l1.4,1.4 c-2.6,2.6-6.6,3-9.3,1.2c-2.6-1.8-6-1.5-8.5.8c-2.6,2.6-6.6,3-9.3,1.2L2.3,23.7z"/>
+          </svg>
+          <span>Lakes & Resorts</span>
+        </button>
+      </div>
+
+      <!-- Properties Grid -->
+      <div class="featured-section">
+        <div class="section-header">
+          <div>
+            <h3 class="section-title">Explore listings in Zimbabwe</h3>
+            <p class="section-subtitle">Verified houses, apartments, and rooms available for days, months, or years.</p>
+          </div>
+        </div>
+        
+        <div class="properties-grid" id="properties-container">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDLORD DASHBOARD VIEW -->
+    <section id="landlord-view" class="view-section">
+      <!-- Hosting Header Hero -->
+      <div class="hosting-hero">
+        <div class="hosting-hero-content">
+          <h2>Welcome back, Host!</h2>
+          <p>List Zimbabwe's best BnBs or manage rental homes for long-term lease terms.</p>
+        </div>
+        <button class="btn-primary" id="open-listing-modal-btn">
+          Post a Property
+        </button>
+      </div>
+
+      <!-- Dashboard Stats/Analytics -->
+      <div class="hosting-analytics">
+        <div class="analytics-card">
+          <h4>Total Revenue</h4>
+          <p class="number">$3,450</p>
+        </div>
+        <div class="analytics-card">
+          <h4>Views (30d)</h4>
+          <p class="number">642</p>
+        </div>
+        <div class="analytics-card">
+          <h4>Active Listings</h4>
+          <p class="number" id="active-listings-count">0</p>
+        </div>
+        <div class="analytics-card">
+          <h4>Average Rating</h4>
+          <p class="number">4.8★</p>
+        </div>
+      </div>
+
+      <!-- Landlord Listing List -->
+      <div class="dashboard-listings-section">
+        <div class="hosting-listings-header">
+          <h3 class="section-title">Your Current Properties</h3>
+        </div>
+        <div class="properties-grid" id="landlord-properties-container">
+          <!-- Dynamically populated via JS representing landlord listings -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: LOGIN / SIGN-UP -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="close-auth-btn" aria-label="Close Modal">×</button>
+      
+      <!-- Modal Navigation Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login-btn">Log In</button>
+        <button class="auth-tab" id="tab-signup-btn">Sign Up</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="auth-form">
+          <!-- Display name field (Sign up only) -->
+          <div class="form-group" id="auth-name-group" style="display: none;">
+            <label for="auth-name">Full Name</label>
+            <input type="text" class="form-input" id="auth-name" placeholder="John Sibanda">
+          </div>
+          
+          <div class="form-group">
+            <label for="auth-email">Email Address</label>
+            <input type="email" class="form-input" id="auth-email" placeholder="name@example.co.zw" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="auth-password">Password</label>
+            <input type="password" class="form-input" id="auth-password" placeholder="••••••••" required>
+          </div>
+
+          <!-- Role Selector (Sign up only) -->
+          <div class="form-group" id="auth-role-group" style="display: none;">
+            <label>Select Your Profile Role</label>
+            <div class="role-toggle-group">
+              <label class="role-option">
+                <input type="radio" name="auth-role" value="tenant" checked>
+                <div class="role-card">
+                  <svg viewBox="0 0 32 32" width="24" height="24">
+                    <path d="M16 4a5 5 0 1 1-5 5 5 5 0 0 1 5-5zm0 12c-6.1 0-11 3.1-11 7v3h22v-3c0-3.9-4.9-7-11-7z"/>
+                  </svg>
+                  <span>I am a Tenant</span>
+                </div>
+              </label>
+              <label class="role-option">
+                <input type="radio" name="auth-role" value="landlord">
+                <div class="role-card">
+                  <svg viewBox="0 0 32 32" width="24" height="24">
+                    <path d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z"/>
+                  </svg>
+                  <span>I am a Landlord</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px;" id="auth-submit-btn">
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD LISTING FORM (LANDLORD) -->
+  <div class="modal-overlay" id="listing-modal">
+    <div class="modal-container large">
+      <button class="modal-close-btn" id="close-listing-btn" aria-label="Close Modal">×</button>
+      <div class="detail-modal-header">
+        <h2>Post a Property</h2>
+        <p style="color: var(--text-muted);">Fill in details to list your space on the ROJA marketplace.</p>
+      </div>
+
+      <div class="modal-body" style="padding-top: 24px;">
+        <form id="add-property-form">
+          <div class="form-group">
+            <label for="prop-title">Property Title</label>
+            <input type="text" class="form-input" id="prop-title" placeholder="e.g. Modern Double Storey Townhouse" required>
+          </div>
+
+          <div class="form-group">
+            <label for="prop-description">Detailed Description</label>
+            <textarea class="form-input" id="prop-description" rows="4" placeholder="Describe the space, solar backup availability, security, borehole water access..." required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prop-location">Location (City)</label>
+              <select class="form-input" id="prop-location" required>
+                <option value="Harare">Harare</option>
+                <option value="Bulawayo">Bulawayo</option>
+                <option value="Victoria Falls">Victoria Falls</option>
+                <option value="Nyanga">Nyanga</option>
+                <option value="Kariba">Kariba</option>
+                <option value="Mutare">Mutare</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="prop-category">Property Category</label>
+              <select class="form-input" id="prop-category">
+                <option value="suburban">Suburbs</option>
+                <option value="stays">BnBs / Suites</option>
+                <option value="highlands">Highlands / Cabins</option>
+                <option value="waterfront">Lakes & Resorts</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prop-rent-type">Rental Type</label>
+              <select class="form-input" id="prop-rent-type">
+                <option value="night">BnB (Short term / per night)</option>
+                <option value="month">Lease (Long term / per month)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="prop-price">Price ($)</label>
+              <input type="number" class="form-input" id="prop-price" min="1" placeholder="e.g. 150 (nightly) or 1200 (monthly)" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prop-guests">Max Guests / Occupants</label>
+              <select class="form-input" id="prop-guests">
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4+ people</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Drag and Drop Image upload widget -->
+          <div class="form-group">
+            <label>Property Pictures</label>
+            <div class="upload-zone" id="upload-zone">
+              <svg viewBox="0 0 32 32" width="40" height="40">
+                <path d="M16 2A14 14 0 1 0 30 16 14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-17h-2v6H9v2h6v6h2v-6h6v-2h-6z"/>
+              </svg>
+              <p>Drag & drop pictures here, or <strong style="color: var(--primary);">browse files</strong></p>
+              <span>Supports JPG, PNG (Max 5MB)</span>
+              <input type="file" id="prop-file-input" accept="image/*" style="display: none;" multiple>
+            </div>
+            <!-- Live Preview container -->
+            <div class="image-preview-container" id="upload-preview-container"></div>
+          </div>
+
+          <!-- Amenities Selection -->
+          <div class="form-group" style="margin-top: 24px;">
+            <label>Amenities Offered</label>
+            <div class="amenities-grid">
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Solar Power">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2l3.4 9.8h10.6l-8.6 6.3 3.3 9.9-8.7-6.3-8.7 6.3 3.3-9.9-8.6-6.3h10.6z"/></svg>
+                  <span>Solar Backup</span>
+                </div>
+              </label>
+
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Borehole Water">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2C8.3 2 2 8.3 2 16c0 5 2.6 9.3 6.6 11.8l1.4-1.4C6.5 24.3 4 20.4 4 16c0-6.6 5.4-12 12-12s12 5.4 12 12c0 4.4-2.5 8.3-6 10.4l1.4 1.4c4-2.5 6.6-6.8 6.6-11.8 0-7.7-6.3-14-14-14z"/></svg>
+                  <span>Borehole</span>
+                </div>
+              </label>
+
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Wifi">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16,4C10.5,4,5.4,6.2,1.7,9.9l1.4,1.4C6.4,8,11,6,16,6s9.6,2,12.9,5.3l1.4-1.4C26.6,6.2,21.5,4,16,4z M16,10c-3.9,0-7.5,1.5-10.2,4.2l1.4,1.4c2.3-2.3,5.4-3.6,8.8-3.6s6.5,1.3,8.8,3.6l1.4-1.4C23.5,11.5,19.9,10,16,10z"/></svg>
+                  <span>Free Wifi</span>
+                </div>
+              </label>
+
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Kitchen">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M12,2h-2v4H6c-1.1,0-2,.9-2,2v20c0,1.1,.9,2,2,2h20c1.1,0,2-.9,2-2V8c0-1.1-.9-2-2-2h-4V2h-2v4H12V2z M26,28H6V8h20V28z"/></svg>
+                  <span>Kitchen</span>
+                </div>
+              </label>
+
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Security System">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2L4 7v10c0 5.5 5.1 10.7 12 13 6.9-2.3 12-7.5 12-13V7L16 2zm10 15c0 4.4-3.9 8.6-10 10.7-6.1-2.1-10-6.3-10-10.7V8.6l10-4.2 10 4.2V17z"/></svg>
+                  <span>Secured</span>
+                </div>
+              </label>
+
+              <label class="amenity-checkbox">
+                <input type="checkbox" name="amenity" value="Car Parking">
+                <div class="amenity-label">
+                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M22,12H10v8h12v-8z M24,8c1.1,0,2,.9,2,2v12c0,1.1-.9,2-2,2H8c-1.1,0-2-.9-2-2V10c0-1.1,.9-2,2-2H24z"/></svg>
+                  <span>Parking</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; margin-top: 32px;" id="add-property-submit-btn">
+            Submit New Listing
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PROPERTY DETAIL VIEW (WITH INTERACTIVE BOOKING) -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-container detail-modal">
+      <button class="modal-close-btn" id="close-detail-btn" aria-label="Close Modal">×</button>
+      
+      <!-- Detail Header -->
+      <div class="detail-modal-header">
+        <h2 id="detail-title">Borrowdale Brooke Mansion</h2>
+        <div class="detail-modal-meta">
+          <span class="rating">
+            <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z"/></svg>
+            <span id="detail-rating-label">4.9 (48 reviews)</span>
+          </span>
+          <span>•</span>
+          <span class="location" id="detail-location-label">Harare, Zimbabwe</span>
+        </div>
+      </div>
+
+      <!-- Detail Image Gallery Grid -->
+      <div class="detail-gallery">
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <img id="detail-img-main" src="" alt="Main Property Image">
+          </div>
+          <div class="gallery-side">
+            <div class="gallery-side-img">
+              <img id="detail-img-side-1" src="" alt="Side View 1">
+            </div>
+            <div class="gallery-side-img">
+              <img id="detail-img-side-2" src="" alt="Side View 2">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Body (2 Columns) -->
+      <div class="detail-modal-body">
+        <!-- Col 1: Property Info, Description, Amenities -->
+        <div class="property-description-container">
+          <div class="host-info">
+            <div class="host-avatar flex-center" id="detail-host-avatar">TN</div>
+            <div class="host-details">
+              <h3 id="detail-host-name">Hosted by Tendai</h3>
+              <p>Verified Local Landlord • Member since 2023</p>
+            </div>
+          </div>
+          
+          <div class="property-description">
+            <h3>About this rental</h3>
+            <p id="detail-description-text">Enjoy the beautiful, minimalist layout of this property...</p>
+          </div>
+
+          <div class="property-amenities-section">
+            <h3>What this place offers</h3>
+            <div class="amenities-list" id="detail-amenities-list">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Reservation Widget -->
+        <div class="booking-widget-wrapper">
+          <div class="booking-widget-card">
+            <div class="booking-header">
+              <div class="booking-price">
+                $<span id="booking-card-price">1200</span> <span id="booking-card-unit">/ month</span>
+              </div>
+              <div class="property-rating">
+                <svg viewBox="0 0 32 32" width="14" height="14"><path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z"/></svg>
+                <span id="booking-card-rating">4.9</span>
+              </div>
+            </div>
+
+            <form id="booking-form">
+              <div class="booking-form">
+                <div class="booking-dates">
+                  <div class="booking-date-field">
+                    <label for="book-checkin" id="book-date-in-label">Move-in Date</label>
+                    <input type="date" id="book-checkin" required>
+                  </div>
+                  <div class="booking-date-field">
+                    <label for="book-checkout" id="book-date-out-label">Move-out Date</label>
+                    <input type="date" id="book-checkout" required>
+                  </div>
+                </div>
+                <div class="booking-guests-field">
+                  <label for="book-guests" id="book-guests-label">Occupants</label>
+                  <select id="book-guests">
+                    <option value="1">1 person</option>
+                    <option value="2">2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4+ people</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Booking Pricing Details (Shows when dates are filled) -->
+              <div class="booking-summary-list" id="booking-price-summary" style="display: none;">
+                <div class="booking-summary-row">
+                  <span id="summary-price-nights">$1200 x 3 months</span>
+                  <span id="summary-price-base">$3600</span>
+                </div>
+                <!-- Security deposit only shown on monthly leases -->
+                <div class="booking-summary-row" id="summary-deposit-row" style="display: none;">
+                  <span>Refundable Security Deposit</span>
+                  <span id="summary-price-deposit">$1200</span>
+                </div>
+                <div class="booking-summary-row">
+                  <span>ROJA platform fee</span>
+                  <span id="summary-price-fee">$50</span>
+                </div>
+                <div class="booking-summary-row total">
+                  <span>Total Due</span>
+                  <span id="summary-price-total">$4850</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;" id="booking-widget-submit-btn">
+                Reserve Place
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#help">Help Center</a></li>
+            <li><a href="#rules">Rental Regulations (Zim)</a></li>
+            <li><a href="#safety">Tenant Safety</a></li>
+            <li><a href="#cancellation">Cancellation & Leases</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hosting</h4>
+          <ul>
+            <li><a href="#host">ROJA Host Portal</a></li>
+            <li><a href="#cover-hosts">Host Protections</a></li>
+            <li><a href="#resources">Solar & Borehole guide</a></li>
+            <li><a href="#forum">Host community forum</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ROJA Zimbabwe</h4>
+          <ul>
+            <li><a href="#about">About ROJA</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#news">Newsroom</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 ROJA Zimbabwe, Inc. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+          <a href="#sitemap">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script src="database.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
