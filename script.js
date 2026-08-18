@@ -791,3 +791,125 @@ function initApp() {
 }
 
 window.addEventListener("DOMContentLoaded", initApp);
+
+// ==========================================
+// 8. Footer Info Modals & Chatbot UI
+// ==========================================
+const infoModal = document.getElementById('info-modal');
+const closeInfoBtn = document.getElementById('close-info-btn');
+const infoTitle = document.getElementById('info-title');
+const infoContent = document.getElementById('info-content');
+
+// Content Dictionary based on user input
+const footerContent = {
+  "#contact": {
+    title: "Contact Support",
+    body: "<p>You can reach us anytime.</p><p><strong>Email:</strong> tatpise@gmail.com</p><p><strong>Phone:</strong> +263775588545</p>"
+  },
+  "#about": {
+    title: "About ROJA",
+    body: "<p>ROJA is Zimbabwe's premium rental marketplace. Our purpose is to seamlessly match verified property hosts with tenants for both short-term BnB stays and long-term house leases, ensuring trust, transparency, and ease of use.</p>"
+  },
+  "#safety": {
+    title: "Tenant Safety",
+    body: "<p><strong>Your Rights Protected:</strong> According to the Constitution of Zimbabwe, every person has the right to personal security and the right to privacy. ROJA enforces these constitutional rights by ensuring all listed properties meet strict safety standards and all hosts are verified, protecting you from arbitrary eviction or unsafe living conditions.</p>"
+  },
+  "#cancellation": {
+    title: "Cancellation & Leases",
+    body: "<h4>ROJA Standard Lease Agreement</h4><p><strong>Long-Term Leases:</strong> Subject to a minimum 30-day notice for cancellation by either party unless specified otherwise in the specific property agreement.</p><p><strong>Short-Term BnBs:</strong> Cancellations made within 48 hours of booking are fully refundable. Beyond that, a 50% cancellation fee applies.</p>"
+  },
+  "#careers": {
+    title: "Careers",
+    body: "<p>There are currently no open positions at ROJA. Please check back later!</p>"
+  },
+  "#news": {
+    title: "Newsroom",
+    body: "<p><strong>Latest at ROJA:</strong> We are currently tracking new estate developments across Zimbabwe to expand our listings, including prioritizing properties with solar and borehole installations to ensure uninterrupted living!</p>"
+  },
+  "#rules": {
+    title: "Rental Regulations",
+    body: "<p>All rentals on ROJA strictly comply with the statutory Rental Regulations of Zimbabwe.</p>"
+  }
+};
+
+// Help Center Chatbot Generator
+function generateChatbotUI() {
+  infoTitle.innerText = "Help Center (Chatbot)";
+  infoContent.innerHTML = `
+    <div class="chatbot-container">
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chat-msg bot">Welcome to the ROJA Help Center! How can I assist you today?</div>
+      </div>
+      <div class="chatbot-input-area">
+        <input type="text" id="chatbot-input" placeholder="Type your question...">
+        <button id="chatbot-send-btn">
+          <svg viewBox="0 0 32 32" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M2 16L30 2M30 2L16 30M30 2L12 20M12 20L2 16Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Attach basic chatbot interaction
+  const sendBtn = document.getElementById('chatbot-send-btn');
+  const input = document.getElementById('chatbot-input');
+  const messages = document.getElementById('chatbot-messages');
+
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    
+    // User message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-msg user';
+    userMsg.innerText = text;
+    messages.appendChild(userMsg);
+    
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+
+    // Fake bot reply
+    setTimeout(() => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg bot';
+      botMsg.innerText = "I am a simple demo chatbot. Please use the Contact Support info (tatpise@gmail.com) for real assistance.";
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+    }, 800);
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+}
+
+// Hook up footer links
+document.querySelectorAll('footer a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href.startsWith('#') && href !== '#') {
+      e.preventDefault();
+      
+      if (href === '#help') {
+        generateChatbotUI();
+        infoModal.classList.add('active');
+      } else if (footerContent[href]) {
+        infoTitle.innerText = footerContent[href].title;
+        infoContent.innerHTML = footerContent[href].body;
+        infoModal.classList.add('active');
+      }
+    }
+  });
+});
+
+closeInfoBtn.addEventListener('click', () => {
+  infoModal.classList.remove('active');
+});
+
+infoModal.addEventListener('click', (e) => {
+  if (e.target === infoModal) {
+    infoModal.classList.remove('active');
+  }
+});

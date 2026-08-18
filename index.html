@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ROJA - Zimbabwe's premium rental marketplace matching verified hosts with tenants for short-term BnBs and long-term house leases.">
-  <title>ROJA | Zimbabwe's Premium Rental Marketplace</title>
-  
+  <meta name="description"
+    content="ROJA - Zimbabwe's premium rental marketplace matching verified hosts with tenants for short-term BnBs and long-term house leases.">
+  <title>ROJA</title>
+
   <!-- CSS Styling -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <!-- Toast Notification System -->
@@ -20,7 +23,8 @@
       <!-- Logo -->
       <a href="#" class="logo" id="logo-btn" aria-label="ROJA Home">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
-          <path d="M16 1C20.5 1 24.5 4.5 24.5 9.5C24.5 13 22 17.5 16 23.5C10 17.5 7.5 13 7.5 9.5C7.5 4.5 11.5 1 16 1ZM16 6.5C14.3 6.5 13 7.8 13 9.5C13 11.2 14.3 12.5 16 12.5C17.7 12.5 19 11.2 19 9.5C19 7.8 17.7 6.5 16 6.5ZM16 26.5C21 26.5 28.5 28.5 29.5 31H2.5C3.5 28.5 11 26.5 16 26.5Z" />
+          <path
+            d="M16 1C20.5 1 24.5 4.5 24.5 9.5C24.5 13 22 17.5 16 23.5C10 17.5 7.5 13 7.5 9.5C7.5 4.5 11.5 1 16 1ZM16 6.5C14.3 6.5 13 7.8 13 9.5C13 11.2 14.3 12.5 16 12.5C17.7 12.5 19 11.2 19 9.5C19 7.8 17.7 6.5 16 6.5ZM16 26.5C21 26.5 28.5 28.5 29.5 31H2.5C3.5 28.5 11 26.5 16 26.5Z" />
         </svg>
         <span>ROJA</span>
       </a>
@@ -31,9 +35,10 @@
         <span>Short & Long Term</span>
         <span>Add guests</span>
         <button class="header-search-btn" aria-label="Search">
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="4">
-            <circle cx="14" cy="14" r="9"/>
-            <line x1="21" y1="21" x2="30" y2="30"/>
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none"
+            stroke="currentColor" stroke-width="4">
+            <circle cx="14" cy="14" r="9" />
+            <line x1="21" y1="21" x2="30" y2="30" />
           </svg>
         </button>
       </div>
@@ -43,21 +48,23 @@
         <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
           <!-- Sun/Moon Icon loaded dynamically via JS -->
           <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor">
-            <path d="M16 8a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/>
+            <path d="M16 8a8 8 0 1 1 0 16 8 8 0 0 1 0-16z" />
           </svg>
         </button>
         <button class="host-toggle-btn" id="switch-perspective-btn">Switch to Hosting</button>
-        
+
         <div class="user-menu-wrapper">
           <button class="user-menu-btn" id="user-menu-trigger" aria-label="User Menu">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
-              <line x1="3" y1="8" x2="29" y2="8"/>
-              <line x1="3" y1="16" x2="29" y2="16"/>
-              <line x1="3" y1="24" x2="29" y2="24"/>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+              stroke="currentColor" stroke-width="3">
+              <line x1="3" y1="8" x2="29" y2="8" />
+              <line x1="3" y1="16" x2="29" y2="16" />
+              <line x1="3" y1="24" x2="29" y2="24" />
             </svg>
             <div class="user-avatar flex-center">
               <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
-                <path d="M16 14c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2c-4.4 0-13 2.2-13 6.6V26c0 1.1.9 2 2 2h22c1.1 0 2-.9 2-2v-3.4c0-4.4-8.6-6.6-13-6.6z"/>
+                <path
+                  d="M16 14c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2c-4.4 0-13 2.2-13 6.6V26c0 1.1.9 2 2 2h22c1.1 0 2-.9 2-2v-3.4c0-4.4-8.6-6.6-13-6.6z" />
               </svg>
             </div>
           </button>
@@ -78,15 +85,11 @@
 
   <!-- Main View Container -->
   <main class="container">
-    
+
     <!-- TENANT PERSPECTIVE VIEW -->
     <section id="tenant-view" class="view-section active">
       <!-- Hero Banner -->
       <div class="hero">
-        <div class="hero-content">
-          <h2>Find your next home in Zimbabwe.</h2>
-          <p>Explore BnBs for quick trips and long-term rental houses for monthly or yearly leases.</p>
-        </div>
       </div>
 
       <!-- Search Widget Container -->
@@ -94,7 +97,8 @@
         <form class="search-widget" id="search-form">
           <div class="search-field">
             <label for="search-location">Where</label>
-            <input type="text" id="search-location" placeholder="Search cities (Harare, Vic Falls...)" autocomplete="off">
+            <input type="text" id="search-location" placeholder="Search cities (Harare, Vic Falls...)"
+              autocomplete="off">
           </div>
           <div class="search-field">
             <label for="search-term">Term</label>
@@ -122,9 +126,10 @@
             </select>
           </div>
           <button type="submit" class="search-btn" aria-label="Search Submit">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="4">
-              <circle cx="14" cy="14" r="9"/>
-              <line x1="21" y1="21" x2="30" y2="30"/>
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+              stroke="currentColor" stroke-width="4">
+              <circle cx="14" cy="14" r="9" />
+              <line x1="21" y1="21" x2="30" y2="30" />
             </svg>
           </button>
         </form>
@@ -135,7 +140,8 @@
         <!-- Suburban Tab -->
         <button class="category-tab active" data-category="suburban">
           <svg viewBox="0 0 32 32" width="24" height="24">
-            <path d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z M25,26h-4v-8H11v8H7V12.8l9-7.9,9,7.9V26z"/>
+            <path
+              d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z M25,26h-4v-8H11v8H7V12.8l9-7.9,9,7.9V26z" />
           </svg>
           <span>Suburbs</span>
         </button>
@@ -143,8 +149,8 @@
         <!-- Stays Tab (BnBs) -->
         <button class="category-tab" data-category="stays">
           <svg viewBox="0 0 32 32" width="24" height="24">
-            <circle cx="16" cy="12" r="4"/>
-            <path d="M2 28a14 14 0 0 1 28 0H2z"/>
+            <circle cx="16" cy="12" r="4" />
+            <path d="M2 28a14 14 0 0 1 28 0H2z" />
           </svg>
           <span>BnBs / Suites</span>
         </button>
@@ -152,7 +158,8 @@
         <!-- Highlands / Nyanga Tab -->
         <button class="category-tab" data-category="highlands">
           <svg viewBox="0 0 32 32" width="24" height="24">
-            <path d="M30,12.4l-14-11L2,12.4l1.2,1.6L5,12.6V28c0,1.1,.9,2,2,2h18c1.1,0,2-.9,2-2V12.6l1.8,1.4,1.2-1.6z M25,28H7V11l9-7.1,9,7.1V28z"/>
+            <path
+              d="M30,12.4l-14-11L2,12.4l1.2,1.6L5,12.6V28c0,1.1,.9,2,2,2h18c1.1,0,2-.9,2-2V12.6l1.8,1.4,1.2-1.6z M25,28H7V11l9-7.1,9,7.1V28z" />
           </svg>
           <span>Highlands / Cabins</span>
         </button>
@@ -160,7 +167,8 @@
         <!-- Waterfront / Resort Tab -->
         <button class="category-tab" data-category="waterfront">
           <svg viewBox="0 0 32 32" width="24" height="24">
-            <path d="M2.3,23.7C4.1,21.8,7,21.3,9,22.6c2,1.3,4.7,1,6.5-.8c1.8-1.8,4.7-2,6.5-.8c2,1.3,4.7,1,6.5-.8l1.4,1.4 c-2.6,2.6-6.6,3-9.3,1.2c-2.6-1.8-6-1.5-8.5.8c-2.6,2.6-6.6,3-9.3,1.2L2.3,23.7z"/>
+            <path
+              d="M2.3,23.7C4.1,21.8,7,21.3,9,22.6c2,1.3,4.7,1,6.5-.8c1.8-1.8,4.7-2,6.5-.8c2,1.3,4.7,1,6.5-.8l1.4,1.4 c-2.6,2.6-6.6,3-9.3,1.2c-2.6-1.8-6-1.5-8.5.8c-2.6,2.6-6.6,3-9.3,1.2L2.3,23.7z" />
           </svg>
           <span>Lakes & Resorts</span>
         </button>
@@ -174,7 +182,7 @@
             <p class="section-subtitle">Verified houses, apartments, and rooms available for days, months, or years.</p>
           </div>
         </div>
-        
+
         <div class="properties-grid" id="properties-container">
           <!-- Dynamically populated via JS -->
         </div>
@@ -231,7 +239,7 @@
   <div class="modal-overlay" id="auth-modal">
     <div class="modal-container">
       <button class="modal-close-btn" id="close-auth-btn" aria-label="Close Modal">×</button>
-      
+
       <!-- Modal Navigation Tabs -->
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-login-btn">Log In</button>
@@ -245,12 +253,12 @@
             <label for="auth-name">Full Name</label>
             <input type="text" class="form-input" id="auth-name" placeholder="John Sibanda">
           </div>
-          
+
           <div class="form-group">
             <label for="auth-email">Email Address</label>
             <input type="email" class="form-input" id="auth-email" placeholder="name@example.co.zw" required>
           </div>
-          
+
           <div class="form-group">
             <label for="auth-password">Password</label>
             <input type="password" class="form-input" id="auth-password" placeholder="••••••••" required>
@@ -264,7 +272,7 @@
                 <input type="radio" name="auth-role" value="tenant" checked>
                 <div class="role-card">
                   <svg viewBox="0 0 32 32" width="24" height="24">
-                    <path d="M16 4a5 5 0 1 1-5 5 5 5 0 0 1 5-5zm0 12c-6.1 0-11 3.1-11 7v3h22v-3c0-3.9-4.9-7-11-7z"/>
+                    <path d="M16 4a5 5 0 1 1-5 5 5 5 0 0 1 5-5zm0 12c-6.1 0-11 3.1-11 7v3h22v-3c0-3.9-4.9-7-11-7z" />
                   </svg>
                   <span>I am a Tenant</span>
                 </div>
@@ -273,7 +281,8 @@
                 <input type="radio" name="auth-role" value="landlord">
                 <div class="role-card">
                   <svg viewBox="0 0 32 32" width="24" height="24">
-                    <path d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z"/>
+                    <path
+                      d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z" />
                   </svg>
                   <span>I am a Landlord</span>
                 </div>
@@ -302,12 +311,15 @@
         <form id="add-property-form">
           <div class="form-group">
             <label for="prop-title">Property Title</label>
-            <input type="text" class="form-input" id="prop-title" placeholder="e.g. Modern Double Storey Townhouse" required>
+            <input type="text" class="form-input" id="prop-title" placeholder="e.g. Modern Double Storey Townhouse"
+              required>
           </div>
 
           <div class="form-group">
             <label for="prop-description">Detailed Description</label>
-            <textarea class="form-input" id="prop-description" rows="4" placeholder="Describe the space, solar backup availability, security, borehole water access..." required></textarea>
+            <textarea class="form-input" id="prop-description" rows="4"
+              placeholder="Describe the space, solar backup availability, security, borehole water access..."
+              required></textarea>
           </div>
 
           <div class="form-row">
@@ -343,7 +355,8 @@
             </div>
             <div class="form-group">
               <label for="prop-price">Price ($)</label>
-              <input type="number" class="form-input" id="prop-price" min="1" placeholder="e.g. 150 (nightly) or 1200 (monthly)" required>
+              <input type="number" class="form-input" id="prop-price" min="1"
+                placeholder="e.g. 150 (nightly) or 1200 (monthly)" required>
             </div>
           </div>
 
@@ -364,7 +377,8 @@
             <label>Property Pictures</label>
             <div class="upload-zone" id="upload-zone">
               <svg viewBox="0 0 32 32" width="40" height="40">
-                <path d="M16 2A14 14 0 1 0 30 16 14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-17h-2v6H9v2h6v6h2v-6h6v-2h-6z"/>
+                <path
+                  d="M16 2A14 14 0 1 0 30 16 14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-17h-2v6H9v2h6v6h2v-6h6v-2h-6z" />
               </svg>
               <p>Drag & drop pictures here, or <strong style="color: var(--primary);">browse files</strong></p>
               <span>Supports JPG, PNG (Max 5MB)</span>
@@ -381,7 +395,9 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Solar Power">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2l3.4 9.8h10.6l-8.6 6.3 3.3 9.9-8.7-6.3-8.7 6.3 3.3-9.9-8.6-6.3h10.6z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path d="M16 2l3.4 9.8h10.6l-8.6 6.3 3.3 9.9-8.7-6.3-8.7 6.3 3.3-9.9-8.6-6.3h10.6z" />
+                  </svg>
                   <span>Solar Backup</span>
                 </div>
               </label>
@@ -389,7 +405,10 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Borehole Water">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2C8.3 2 2 8.3 2 16c0 5 2.6 9.3 6.6 11.8l1.4-1.4C6.5 24.3 4 20.4 4 16c0-6.6 5.4-12 12-12s12 5.4 12 12c0 4.4-2.5 8.3-6 10.4l1.4 1.4c4-2.5 6.6-6.8 6.6-11.8 0-7.7-6.3-14-14-14z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path
+                      d="M16 2C8.3 2 2 8.3 2 16c0 5 2.6 9.3 6.6 11.8l1.4-1.4C6.5 24.3 4 20.4 4 16c0-6.6 5.4-12 12-12s12 5.4 12 12c0 4.4-2.5 8.3-6 10.4l1.4 1.4c4-2.5 6.6-6.8 6.6-11.8 0-7.7-6.3-14-14-14z" />
+                  </svg>
                   <span>Borehole</span>
                 </div>
               </label>
@@ -397,7 +416,10 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Wifi">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16,4C10.5,4,5.4,6.2,1.7,9.9l1.4,1.4C6.4,8,11,6,16,6s9.6,2,12.9,5.3l1.4-1.4C26.6,6.2,21.5,4,16,4z M16,10c-3.9,0-7.5,1.5-10.2,4.2l1.4,1.4c2.3-2.3,5.4-3.6,8.8-3.6s6.5,1.3,8.8,3.6l1.4-1.4C23.5,11.5,19.9,10,16,10z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path
+                      d="M16,4C10.5,4,5.4,6.2,1.7,9.9l1.4,1.4C6.4,8,11,6,16,6s9.6,2,12.9,5.3l1.4-1.4C26.6,6.2,21.5,4,16,4z M16,10c-3.9,0-7.5,1.5-10.2,4.2l1.4,1.4c2.3-2.3,5.4-3.6,8.8-3.6s6.5,1.3,8.8,3.6l1.4-1.4C23.5,11.5,19.9,10,16,10z" />
+                  </svg>
                   <span>Free Wifi</span>
                 </div>
               </label>
@@ -405,7 +427,10 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Kitchen">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M12,2h-2v4H6c-1.1,0-2,.9-2,2v20c0,1.1,.9,2,2,2h20c1.1,0,2-.9,2-2V8c0-1.1-.9-2-2-2h-4V2h-2v4H12V2z M26,28H6V8h20V28z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path
+                      d="M12,2h-2v4H6c-1.1,0-2,.9-2,2v20c0,1.1,.9,2,2,2h20c1.1,0,2-.9,2-2V8c0-1.1-.9-2-2-2h-4V2h-2v4H12V2z M26,28H6V8h20V28z" />
+                  </svg>
                   <span>Kitchen</span>
                 </div>
               </label>
@@ -413,7 +438,10 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Security System">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2L4 7v10c0 5.5 5.1 10.7 12 13 6.9-2.3 12-7.5 12-13V7L16 2zm10 15c0 4.4-3.9 8.6-10 10.7-6.1-2.1-10-6.3-10-10.7V8.6l10-4.2 10 4.2V17z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path
+                      d="M16 2L4 7v10c0 5.5 5.1 10.7 12 13 6.9-2.3 12-7.5 12-13V7L16 2zm10 15c0 4.4-3.9 8.6-10 10.7-6.1-2.1-10-6.3-10-10.7V8.6l10-4.2 10 4.2V17z" />
+                  </svg>
                   <span>Secured</span>
                 </div>
               </label>
@@ -421,14 +449,18 @@
               <label class="amenity-checkbox">
                 <input type="checkbox" name="amenity" value="Car Parking">
                 <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16"><path d="M22,12H10v8h12v-8z M24,8c1.1,0,2,.9,2,2v12c0,1.1-.9,2-2,2H8c-1.1,0-2-.9-2-2V10c0-1.1,.9-2,2-2H24z"/></svg>
+                  <svg viewBox="0 0 32 32" width="16" height="16">
+                    <path
+                      d="M22,12H10v8h12v-8z M24,8c1.1,0,2,.9,2,2v12c0,1.1-.9,2-2,2H8c-1.1,0-2-.9-2-2V10c0-1.1,.9-2,2-2H24z" />
+                  </svg>
                   <span>Parking</span>
                 </div>
               </label>
             </div>
           </div>
 
-          <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; margin-top: 32px;" id="add-property-submit-btn">
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; margin-top: 32px;"
+            id="add-property-submit-btn">
             Submit New Listing
           </button>
         </form>
@@ -440,13 +472,15 @@
   <div class="modal-overlay" id="detail-modal">
     <div class="modal-container detail-modal">
       <button class="modal-close-btn" id="close-detail-btn" aria-label="Close Modal">×</button>
-      
+
       <!-- Detail Header -->
       <div class="detail-modal-header">
         <h2 id="detail-title">Borrowdale Brooke Mansion</h2>
         <div class="detail-modal-meta">
           <span class="rating">
-            <svg viewBox="0 0 32 32" width="16" height="16"><path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z"/></svg>
+            <svg viewBox="0 0 32 32" width="16" height="16">
+              <path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z" />
+            </svg>
             <span id="detail-rating-label">4.9 (48 reviews)</span>
           </span>
           <span>•</span>
@@ -482,7 +516,7 @@
               <p>Verified Local Landlord • Member since 2023</p>
             </div>
           </div>
-          
+
           <div class="property-description">
             <h3>About this rental</h3>
             <p id="detail-description-text">Enjoy the beautiful, minimalist layout of this property...</p>
@@ -504,7 +538,9 @@
                 $<span id="booking-card-price">1200</span> <span id="booking-card-unit">/ month</span>
               </div>
               <div class="property-rating">
-                <svg viewBox="0 0 32 32" width="14" height="14"><path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z"/></svg>
+                <svg viewBox="0 0 32 32" width="14" height="14">
+                  <path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z" />
+                </svg>
                 <span id="booking-card-rating">4.9</span>
               </div>
             </div>
@@ -553,7 +589,8 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;" id="booking-widget-submit-btn">
+              <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;"
+                id="booking-widget-submit-btn">
                 Reserve Place
               </button>
             </form>
@@ -576,15 +613,7 @@
             <li><a href="#cancellation">Cancellation & Leases</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Hosting</h4>
-          <ul>
-            <li><a href="#host">ROJA Host Portal</a></li>
-            <li><a href="#cover-hosts">Host Protections</a></li>
-            <li><a href="#resources">Solar & Borehole guide</a></li>
-            <li><a href="#forum">Host community forum</a></li>
-          </ul>
-        </div>
+
         <div class="footer-col">
           <h4>ROJA Zimbabwe</h4>
           <ul>
@@ -595,7 +624,7 @@
           </ul>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
         <p>© 2026 ROJA Zimbabwe, Inc. All rights reserved.</p>
         <div class="footer-links">
@@ -607,8 +636,22 @@
     </div>
   </footer>
 
+  <!-- MODAL: GENERIC INFO / CHATBOT -->
+  <div class="modal-overlay" id="info-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="close-info-btn" aria-label="Close Modal">×</button>
+      <div class="modal-header">
+        <h2 id="info-title">Title</h2>
+      </div>
+      <div class="modal-body" id="info-content">
+        <!-- Dynamic content goes here -->
+      </div>
+    </div>
+  </div>
+
   <!-- Vanilla JavaScript Logic -->
   <script src="database.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
