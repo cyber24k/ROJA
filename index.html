@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="ROJA - Zimbabwe's premium rental marketplace matching verified hosts with tenants for short-term BnBs and long-term house leases.">
-  <title>ROJA</title>
+  <title>ROJA - Zimbabwe Rental & BnB Marketplace</title>
 
   <!-- CSS Styling -->
   <link rel="stylesheet" href="styles.css">
@@ -71,11 +71,17 @@
 
           <!-- Dropdown items -->
           <div class="user-dropdown" id="user-dropdown-menu">
+            <div class="dropdown-user-header" id="dropdown-user-header" style="display: none;">
+              <div class="dropdown-user-name" id="dropdown-user-name">User Name</div>
+              <div class="dropdown-user-badge" id="dropdown-user-badge">Tenant</div>
+            </div>
             <ul>
               <li><button class="highlight" id="dropdown-login-btn">Log In / Sign Up</button></li>
+              <li><button id="dropdown-bookings-btn" style="display: none;">My Bookings</button></li>
+              <li><button id="dropdown-favorites-btn" style="display: none;">Saved Homes</button></li>
               <li><button id="dropdown-host-btn">List Your Property</button></li>
               <li><a href="#help">Help Center</a></li>
-              <li><button id="dropdown-logout-btn" style="display: none; color: var(--primary);">Log Out</button></li>
+              <li><button id="dropdown-logout-btn" style="display: none; color: #ef4444;">Log Out</button></li>
             </ul>
           </div>
         </div>
@@ -194,7 +200,7 @@
       <!-- Hosting Header Hero -->
       <div class="hosting-hero">
         <div class="hosting-hero-content">
-          <h2>Welcome back, Host!</h2>
+          <h2 id="landlord-greeting">Welcome back, Host!</h2>
           <p>List Zimbabwe's best BnBs or manage rental homes for long-term lease terms.</p>
         </div>
         <button class="btn-primary" id="open-listing-modal-btn">
@@ -206,11 +212,11 @@
       <div class="hosting-analytics">
         <div class="analytics-card">
           <h4>Total Revenue</h4>
-          <p class="number">$3,450</p>
+          <p class="number" id="landlord-revenue-stat">$0</p>
         </div>
         <div class="analytics-card">
-          <h4>Views (30d)</h4>
-          <p class="number">642</p>
+          <h4>Total Bookings</h4>
+          <p class="number" id="landlord-bookings-stat">0</p>
         </div>
         <div class="analytics-card">
           <h4>Active Listings</h4>
@@ -218,7 +224,7 @@
         </div>
         <div class="analytics-card">
           <h4>Average Rating</h4>
-          <p class="number">4.8★</p>
+          <p class="number">4.9★</p>
         </div>
       </div>
 
@@ -229,6 +235,17 @@
         </div>
         <div class="properties-grid" id="landlord-properties-container">
           <!-- Dynamically populated via JS representing landlord listings -->
+        </div>
+      </div>
+
+      <!-- Landlord Inbound Bookings Section -->
+      <div class="dashboard-bookings-section" style="margin-top: 48px;">
+        <div class="hosting-listings-header">
+          <h3 class="section-title">Reservations & Lease Inquiries</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Recent bookings made by verified tenants on your listings.</p>
+        </div>
+        <div id="landlord-bookings-container" class="landlord-bookings-list">
+          <!-- Dynamically populated via JS -->
         </div>
       </div>
     </section>
@@ -246,12 +263,21 @@
         <button class="auth-tab" id="tab-signup-btn">Sign Up</button>
       </div>
 
+      <!-- Demo Accounts Quick Fill Helper -->
+      <div class="demo-accounts-helper">
+        <span>Quick Demo Login:</span>
+        <div class="demo-chips">
+          <button type="button" class="demo-chip" id="demo-landlord-btn">Host Tendai (Landlord)</button>
+          <button type="button" class="demo-chip" id="demo-tenant-btn">Farai (Tenant)</button>
+        </div>
+      </div>
+
       <div class="modal-body">
         <form id="auth-form">
           <!-- Display name field (Sign up only) -->
           <div class="form-group" id="auth-name-group" style="display: none;">
             <label for="auth-name">Full Name</label>
-            <input type="text" class="form-input" id="auth-name" placeholder="John Sibanda">
+            <input type="text" class="form-input" id="auth-name" placeholder="e.g. Tendai Moyo">
           </div>
 
           <div class="form-group">
@@ -354,7 +380,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="prop-price">Price ($)</label>
+              <label for="prop-price">Price ($ USD)</label>
               <input type="number" class="form-input" id="prop-price" min="1"
                 placeholder="e.g. 150 (nightly) or 1200 (monthly)" required>
             </div>
@@ -595,6 +621,23 @@
               </button>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: MY BOOKINGS (TENANT VIEW) -->
+  <div class="modal-overlay" id="bookings-modal">
+    <div class="modal-container large">
+      <button class="modal-close-btn" id="close-bookings-btn" aria-label="Close Modal">×</button>
+      <div class="detail-modal-header">
+        <h2>My Bookings & Stays</h2>
+        <p style="color: var(--text-muted);">View, track, and manage your reserved stays and rental leases in Zimbabwe.</p>
+      </div>
+
+      <div class="modal-body" style="padding: 24px;">
+        <div id="tenant-bookings-list" class="tenant-bookings-grid">
+          <!-- Dynamically populated via JS -->
         </div>
       </div>
     </div>
