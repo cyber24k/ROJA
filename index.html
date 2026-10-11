@@ -5,694 +5,1061 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="ROJA - Zimbabwe's premium rental marketplace matching verified hosts with tenants for short-term BnBs and long-term house leases.">
-  <title>ROJA - Zimbabwe Rental & BnB Marketplace</title>
-
-  <!-- CSS Styling -->
+    content="ACCOMMODATION CONNECT ZW — Southern Africa's premier verified short-stay, holiday home & rental marketplace. Instant confirmation, verified properties, and 24/7 personal support.">
+  <title>ACCOMMODATION CONNECT ZW — Connect. Book. Stay.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- Toast Notification System -->
-  <div id="toast-container"></div>
+  <!-- ===================== TOAST ===================== -->
+  <div id="toast-container" aria-live="polite"></div>
 
-  <!-- Header Navigation -->
-  <header>
-    <div class="container nav-container">
+  <!-- ===================== HEADER ===================== -->
+  <header id="site-header" class="site-header">
+    <div class="header-inner">
       <!-- Logo -->
-      <a href="#" class="logo" id="logo-btn" aria-label="ROJA Home">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
-          <path
-            d="M16 1C20.5 1 24.5 4.5 24.5 9.5C24.5 13 22 17.5 16 23.5C10 17.5 7.5 13 7.5 9.5C7.5 4.5 11.5 1 16 1ZM16 6.5C14.3 6.5 13 7.8 13 9.5C13 11.2 14.3 12.5 16 12.5C17.7 12.5 19 11.2 19 9.5C19 7.8 17.7 6.5 16 6.5ZM16 26.5C21 26.5 28.5 28.5 29.5 31H2.5C3.5 28.5 11 26.5 16 26.5Z" />
-        </svg>
-        <span>ROJA</span>
+      <a href="#" class="brand-logo" id="logo-btn" aria-label="ACCOMMODATION CONNECT ZW Home">
+        <span class="logo-name">ACCOMMODATION</span>
+        <span class="logo-sub">CONNECT ZW</span>
       </a>
 
-      <!-- Mini Search Bar (Hidden on Mobile) -->
-      <div class="header-search" id="mini-search-btn">
-        <span>Zimbabwe</span>
-        <span>Short & Long Term</span>
-        <span>Add guests</span>
-        <button class="header-search-btn" aria-label="Search">
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none"
-            stroke="currentColor" stroke-width="4">
-            <circle cx="14" cy="14" r="9" />
-            <line x1="21" y1="21" x2="30" y2="30" />
-          </svg>
-        </button>
-      </div>
+      <!-- Center navigation -->
+      <nav class="main-nav" id="main-nav">
+        <a href="#hero-section" class="nav-link active">Home</a>
+        <a href="#about-section" class="nav-link">About</a>
+        <a href="#areas-to-book" class="nav-link">Browse Properties</a>
+        <a href="#list-property-section" class="nav-link" id="nav-list-property">Sell / List Property</a>
+        <a href="#contact-section" class="nav-link" id="nav-contact">Contact Us</a>
+      </nav>
 
-      <!-- User controls -->
-      <div class="nav-actions">
-        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
-          <!-- Sun/Moon Icon loaded dynamically via JS -->
-          <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor">
-            <path d="M16 8a8 8 0 1 1 0 16 8 8 0 0 1 0-16z" />
-          </svg>
-        </button>
-        <button class="host-toggle-btn" id="switch-perspective-btn">Switch to Hosting</button>
-
-        <div class="user-menu-wrapper">
-          <button class="user-menu-btn" id="user-menu-trigger" aria-label="User Menu">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
-              stroke="currentColor" stroke-width="3">
-              <line x1="3" y1="8" x2="29" y2="8" />
-              <line x1="3" y1="16" x2="29" y2="16" />
-              <line x1="3" y1="24" x2="29" y2="24" />
+      <!-- Right controls -->
+      <div class="header-tools">
+        <!-- Currency selector -->
+        <div class="currency-selector" id="currency-selector">
+          <button class="currency-btn" id="currency-trigger-btn" aria-label="Select currency">
+            <span id="currency-code">USD</span> (<span id="currency-symbol">$</span>)
+            <svg viewBox="0 0 10 6" width="10" height="6" fill="none">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" />
             </svg>
-            <div class="user-avatar flex-center">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
-                <path
-                  d="M16 14c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5zm0 2c-4.4 0-13 2.2-13 6.6V26c0 1.1.9 2 2 2h22c1.1 0 2-.9 2-2v-3.4c0-4.4-8.6-6.6-13-6.6z" />
-              </svg>
-            </div>
           </button>
-
-          <!-- Dropdown items -->
-          <div class="user-dropdown" id="user-dropdown-menu">
-            <div class="dropdown-user-header" id="dropdown-user-header" style="display: none;">
-              <div class="dropdown-user-name" id="dropdown-user-name">User Name</div>
-              <div class="dropdown-user-badge" id="dropdown-user-badge">Tenant</div>
-            </div>
-            <ul>
-              <li><button class="highlight" id="dropdown-login-btn">Log In / Sign Up</button></li>
-              <li><button id="dropdown-bookings-btn" style="display: none;">My Bookings</button></li>
-              <li><button id="dropdown-favorites-btn" style="display: none;">Saved Homes</button></li>
-              <li><button id="dropdown-host-btn">List Your Property</button></li>
-              <li><a href="#help">Help Center</a></li>
-              <li><button id="dropdown-logout-btn" style="display: none; color: #ef4444;">Log Out</button></li>
-            </ul>
+          <div class="currency-dropdown" id="currency-dropdown">
+            <button class="currency-option active" data-currency="USD" data-symbol="$" data-rate="1">USD — US Dollar
+              ($)</button>
+            <button class="currency-option" data-currency="ZAR" data-symbol="R" data-rate="18.5">ZAR — SA Rand
+              (R)</button>
+            <button class="currency-option" data-currency="ZIG" data-symbol="Z$" data-rate="35">ZiG — Zimbabwe Gold
+              (Z$)</button>
+            <button class="currency-option" data-currency="GBP" data-symbol="£" data-rate="0.79">GBP — British Pound
+              (£)</button>
           </div>
         </div>
+
+        <!-- Saved / Wishlist -->
+        <button class="icon-tool-btn" id="wishlist-trigger-btn" title="Saved properties" aria-label="Saved properties">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="19" height="19">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="badge-count" id="wishlist-badge" style="display:none">0</span>
+        </button>
+
+        <!-- Host Toggle Button -->
+        <button class="btn-host-toggle" id="switch-perspective-btn">
+          <span id="host-switch-label">Host Dashboard</span>
+        </button>
+
+        <!-- User Menu -->
+        <div class="user-menu-wrap">
+          <button class="user-account-btn" id="user-menu-trigger" aria-label="Account">
+            <div class="user-avatar-sm" id="user-avatar-sm">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <span class="account-label" id="account-label-text">Account</span>
+          </button>
+          <div class="user-dropdown" id="user-dropdown-menu">
+            <div class="dropdown-user-header" id="dropdown-user-header" style="display:none">
+              <div class="dropdown-user-avatar" id="dropdown-avatar-initials">U</div>
+              <div>
+                <div class="dropdown-user-name" id="dropdown-user-name">User</div>
+                <div class="dropdown-user-role" id="dropdown-user-badge">Guest</div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="dropdown-login-btn">Sign In / Register</button>
+            <button class="dropdown-item" id="dropdown-bookings-btn" style="display:none">My Bookings</button>
+            <button class="dropdown-item" id="dropdown-favorites-btn" style="display:none">Saved Properties</button>
+            <button class="dropdown-item" id="dropdown-host-btn">Sell or List Property</button>
+            <button class="dropdown-item" id="dropdown-enquire-btn">General Enquiry</button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" id="dropdown-logout-btn" style="display:none">Sign Out</button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Main View Container -->
-  <main class="container">
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main id="main-content">
 
-    <!-- TENANT PERSPECTIVE VIEW -->
-    <section id="tenant-view" class="view-section active">
-      <!-- Hero Banner -->
-      <div class="hero">
-      </div>
+    <!-- ========== GUEST / TENANT VIEW ========== -->
+    <div id="tenant-view" class="guest-view-wrap">
 
-      <!-- Search Widget Container -->
-      <div class="search-widget-container">
-        <form class="search-widget" id="search-form">
-          <div class="search-field">
-            <label for="search-location">Where</label>
-            <input type="text" id="search-location" placeholder="Search cities (Harare, Vic Falls...)"
-              autocomplete="off">
+      <!-- HERO BANNER -->
+      <section class="hero-banner" id="hero-section">
+        <div class="hero-media-wrapper">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
+            alt="Luxury Homes & Stays" class="hero-banner-image">
+          <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-title-wrap">
+          <h1 class="hero-title">CONNECT. BUY. STAY.</h1>
+          <p class="hero-subtitle">Houses for total purchase with verified title deeds & luxury holiday rentals across
+            Zimbabwe</p>
+        </div>
+      </section>
+
+      <!-- STICKY SEARCH FILTER (Exact Accommodation Connect .searchFilterDefault) -->
+      <div class="search-filter-wrapper" id="sticky-search-anchor">
+        <form id="search-filter" class="searchFilterDefault">
+          <div class="selectWrap">
+            <!-- Listing Purpose: Buy or Rent -->
+            <div class="searchSection typeSelection">
+              <label class="searchLabel" for="listing_type">I Want To</label>
+              <div class="select-wrapper">
+                <select id="listing_type" name="listing_type">
+                  <option value="">Buy or Rent (All)</option>
+                  <option value="sale">Buy a House (For Sale)</option>
+                  <option value="rent">Rent / Book a Stay</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="searchSection locationSelection">
+              <label class="searchLabel" for="location">Where</label>
+              <div class="select-wrapper">
+                <select id="location" name="location">
+                  <option value="">Select Location</option>
+                  <option value="Harare">Harare</option>
+                  <option value="Victoria Falls">Victoria Falls</option>
+                  <option value="Bulawayo">Bulawayo</option>
+                  <option value="Nyanga">Nyanga</option>
+                  <option value="Kariba">Kariba</option>
+                  <option value="Mutare">Mutare</option>
+                  <option value="Masvingo">Masvingo</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Date -->
+            <div class="searchSection dateSelection">
+              <label class="searchLabel" for="availability_date">When</label>
+              <input class="searchInputField" type="text" placeholder="Add dates / Move-in" id="availability_date"
+                name="availability_date" readonly>
+            </div>
+
+            <!-- Capacity -->
+            <div class="searchSection capacitySelection">
+              <label class="searchLabel" for="capacity">Who</label>
+              <div class="select-wrapper">
+                <select id="capacity" name="capacity">
+                  <option value="">Add guests / Beds</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10+</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="search-field">
-            <label for="search-term">Term</label>
-            <select id="search-term">
-              <option value="any">Any Term</option>
-              <option value="short">BnB (Daily)</option>
-              <option value="long">Lease (Monthly)</option>
-            </select>
+
+          <!-- Buttons -->
+          <div class="searchButtons">
+            <div class="searchSection">
+              <button class="searchInputSubmitBtn" type="submit" aria-label="Search properties"
+                title="Search properties">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+              </button>
+            </div>
+            <div class="searchSection">
+              <button class="searchInputSubmitBtn inactive" type="button" id="reset-filters" aria-label="Reset filters"
+                title="Reset filters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+                  <path d="M3 12a9 9 0 1 0 2.64-6.36L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div class="search-field">
-            <label for="search-checkin">Start Date</label>
-            <input type="date" id="search-checkin">
-          </div>
-          <div class="search-field">
-            <label for="search-checkout">End Date</label>
-            <input type="date" id="search-checkout">
-          </div>
-          <div class="search-field">
-            <label for="search-guests">Who</label>
-            <select id="search-guests">
-              <option value="1">1 guest</option>
-              <option value="2">2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4+ guests</option>
-            </select>
-          </div>
-          <button type="submit" class="search-btn" aria-label="Search Submit">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
-              stroke="currentColor" stroke-width="4">
-              <circle cx="14" cy="14" r="9" />
-              <line x1="21" y1="21" x2="30" y2="30" />
-            </svg>
-          </button>
         </form>
       </div>
 
-      <!-- Filter Categories Tab bar (Zimbabwean Styles) -->
-      <div class="categories-filter-bar" id="category-filter-tabs">
-        <!-- Suburban Tab -->
-        <button class="category-tab active" data-category="suburban">
-          <svg viewBox="0 0 32 32" width="24" height="24">
-            <path
-              d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z M25,26h-4v-8H11v8H7V12.8l9-7.9,9,7.9V26z" />
-          </svg>
-          <span>Suburbs</span>
-        </button>
+      <!-- WELCOME SECTION -->
+      <section class="section-welcome" id="about-section">
+        <div class="content-container">
+          <div class="welcome-inner">
+            <h2 class="welcome-heading">
+              WELCOME TO<br>
+              <span class="color-accent">ACCOMMODATION CONNECT ZW</span>
+            </h2>
+            <div class="welcome-text">
+              <p>Find your forever home or book your next luxury retreat.
+                <strong>Accommodation Connect ZW</strong> is Zimbabwe's dedicated real estate marketplace for both
+                <strong>buying houses with clean title deeds</strong> and <strong>renting verified holiday homes and
+                  residential leases</strong>.
+                Every property includes <strong>direct seller or landlord contact details</strong> with instant
+                click-to-call and WhatsApp chats, ensuring complete transparency with no middleman barriers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Stays Tab (BnBs) -->
-        <button class="category-tab" data-category="stays">
-          <svg viewBox="0 0 32 32" width="24" height="24">
-            <circle cx="16" cy="12" r="4" />
-            <path d="M2 28a14 14 0 0 1 28 0H2z" />
-          </svg>
-          <span>BnBs / Suites</span>
-        </button>
+      <!-- BOOKING MADE EASY SECTION -->
+      <section class="section-split booking-easy-section">
+        <div class="content-container">
+          <div class="split-grid">
+            <div class="split-text-col">
+              <h2 class="split-heading">
+                BOOKING.<br>
+                MADE.<br>
+                <span class="color-accent">EASY.</span>
+              </h2>
+              <p class="split-description">
+                Skip the hassle, book instantly, and settle in stress-free. Offering a seamless stay with
+                <strong>instant confirmation, easy check-ins, and 24/7 real support.</strong> No bots, no back-and-forth
+                emails—just a smooth, <strong>personalised experience</strong> from start to finish. Need assistance?
+                <strong>Speak to a real person, anytime.</strong>
+              </p>
+              <a href="#areas-to-book" class="ac-button">Book now</a>
+            </div>
+            <div class="split-image-col">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80"
+                alt="Booking Made Easy" class="split-img">
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Highlands / Nyanga Tab -->
-        <button class="category-tab" data-category="highlands">
-          <svg viewBox="0 0 32 32" width="24" height="24">
-            <path
-              d="M30,12.4l-14-11L2,12.4l1.2,1.6L5,12.6V28c0,1.1,.9,2,2,2h18c1.1,0,2-.9,2-2V12.6l1.8,1.4,1.2-1.6z M25,28H7V11l9-7.1,9,7.1V28z" />
-          </svg>
-          <span>Highlands / Cabins</span>
-        </button>
+      <!-- SELL. LEASE. LIST YOUR PROPERTY SECTION -->
+      <section class="section-split earn-relax-section" id="list-property-section">
+        <div class="content-container">
+          <div class="split-grid">
+            <div class="split-text-col">
+              <h2 class="split-heading">
+                SELL.<br>
+                LEASE.<br>
+                <span class="color-accent">LIST YOUR PROPERTY.</span>
+              </h2>
+              <div class="features-list">
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22"
+                      height="22">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                  <div class="feature-content">
+                    <h3>Total Property Sales & Rentals</h3>
+                    <p>Sell your house with clean title deeds, or lease holiday BnBs and family homes</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22"
+                      height="22">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div class="feature-content">
+                    <h3>Direct Seller & Landlord Contacts</h3>
+                    <p>Your direct phone number & WhatsApp chat are featured on every listing for immediate deals</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22"
+                      height="22">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </div>
+                  <div class="feature-content">
+                    <h3>Instant Exposure</h3>
+                    <p>Reaching thousands of verified local & international diaspora buyers and travelers</p>
+                  </div>
+                </div>
+              </div>
+              <button class="ac-button" id="start-earning-btn">List property now</button>
+            </div>
+            <div class="split-image-col">
+              <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1000&q=80"
+                alt="List Your Property" class="split-img">
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Waterfront / Resort Tab -->
-        <button class="category-tab" data-category="waterfront">
-          <svg viewBox="0 0 32 32" width="24" height="24">
-            <path
-              d="M2.3,23.7C4.1,21.8,7,21.3,9,22.6c2,1.3,4.7,1,6.5-.8c1.8-1.8,4.7-2,6.5-.8c2,1.3,4.7,1,6.5-.8l1.4,1.4 c-2.6,2.6-6.6,3-9.3,1.2c-2.6-1.8-6-1.5-8.5.8c-2.6,2.6-6.6,3-9.3,1.2L2.3,23.7z" />
-          </svg>
-          <span>Lakes & Resorts</span>
-        </button>
-      </div>
+      <!-- PROPERTIES & DESTINATIONS (Swiper Carousel) -->
+      <section class="section-areas" id="areas-to-book">
+        <div class="content-container">
+          <div class="areas-header">
+            <h2 class="section-main-heading">PROPERTIES &amp; DESTINATIONS</h2>
+            <div class="areas-controls">
+              <!-- Intent Type filter tabs (For Sale vs For Rent) -->
+              <div class="type-filter-tabs" id="type-filter-tabs">
+                <button class="type-tab active" data-type="all">All Listings</button>
+                <button class="type-tab" data-type="sale">Houses For Sale</button>
+                <button class="type-tab" data-type="rent">For Rent / Stays</button>
+              </div>
 
-      <!-- Properties Grid -->
-      <div class="featured-section">
-        <div class="section-header">
+              <!-- Location filter tabs -->
+              <div class="location-tabs" id="location-filter-tabs">
+                <button class="loc-tab active" data-loc="all">All Locations</button>
+                <button class="loc-tab" data-loc="Harare">Harare</button>
+                <button class="loc-tab" data-loc="Victoria Falls">Victoria Falls</button>
+                <button class="loc-tab" data-loc="Bulawayo">Bulawayo</button>
+                <button class="loc-tab" data-loc="Nyanga">Nyanga</button>
+                <button class="loc-tab" data-loc="Kariba">Kariba</button>
+              </div>
+
+              <!-- Carousel Nav -->
+              <div class="swiper-nav-wrap">
+                <button class="custom-swiper-prev" id="carousel-prev-btn" aria-label="Previous">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="20" height="20">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button class="custom-swiper-next" id="carousel-next-btn" aria-label="Next">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="20" height="20">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Container -->
+          <div class="acf-carousel-container">
+            <div class="outer-container" id="properties-carousel-track">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Empty state -->
+          <div class="empty-results" id="empty-state" style="display:none">
+            <h3>No properties found matching your selection</h3>
+            <p>Try resetting filters or exploring other destinations.</p>
+            <button class="ac-button-secondary" id="empty-reset-btn">Reset Filters</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT PEOPLE SAY (Testimonials) -->
+      <section class="section-testimonials">
+        <div class="content-container">
+          <div class="testimonials-wrapper">
+            <!-- Left -->
+            <div class="testimonial-left-col">
+              <h2 class="testi-heading">WHAT<br>PEOPLE<br>SAY</h2>
+              <div class="profile-thumbnails" id="profile-thumbnails"></div>
+            </div>
+            <!-- Center -->
+            <div class="testimonial-image-col">
+              <div class="image-wrapper">
+                <img id="main-testimonial-image" src="" alt="Featured guest">
+              </div>
+            </div>
+            <!-- Right -->
+            <div class="testimonial-right-col">
+              <div class="right-inner">
+                <div class="testimonial-quote-wrap">
+                  <p id="testimonial-text" class="testimonial-text"></p>
+                </div>
+                <button id="next-testimonial-btn" class="next-button" aria-label="Next review">&#x279C;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRENDING DESTINATIONS -->
+      <section class="section-trending">
+        <div class="content-container">
+          <h2 class="section-main-heading">TRENDING<br>DESTINATIONS</h2>
+          <div class="trending-grid">
+            <div class="trending-card large" data-destination="Victoria Falls">
+              <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=1200&q=80"
+                alt="Victoria Falls">
+              <div class="trending-overlay"></div>
+              <h3 class="trending-title">VICTORIA FALLS</h3>
+            </div>
+            <div class="trending-stack">
+              <div class="trending-card small" data-destination="Harare">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                  alt="Harare">
+                <div class="trending-overlay"></div>
+                <h3 class="trending-title">HARARE</h3>
+              </div>
+              <div class="trending-card small" data-destination="Nyanga">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80"
+                  alt="Nyanga">
+                <div class="trending-overlay"></div>
+                <h3 class="trending-title">NYANGA HIGHLANDS</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECENT ARTICLES -->
+      <section class="section-blogs">
+        <div class="content-container">
+          <h2 class="section-main-heading">RECENT ARTICLES</h2>
+          <div class="blogs-grid">
+            <article class="blog-card">
+              <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80"
+                  alt="Article 1">
+              </div>
+              <div class="blog-content">
+                <h3 class="blog-title">Top 5 Hidden Gem Getaways in Zimbabwe</h3>
+                <span class="blog-date">March 25, 2026</span>
+                <p class="blog-excerpt">From misty pine chalets in Nyanga to serene lakeside lodges in Kariba, discover
+                  the finest uncrowded retreats for your next vacation.</p>
+                <a href="#" class="blog-read-more" data-article="1">Read More »</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
+                  alt="Article 2">
+              </div>
+              <div class="blog-content">
+                <h3 class="blog-title">What to Look for When Booking an African Holiday Home</h3>
+                <span class="blog-date">February 17, 2026</span>
+                <p class="blog-excerpt">Solar power backups, guaranteed water sources, verified hosts, and transparent
+                  check-in procedures: here is your essential booking checklist.</p>
+                <a href="#" class="blog-read-more" data-article="2">Read More »</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+                  alt="Article 3">
+              </div>
+              <div class="blog-content">
+                <h3 class="blog-title">Why Victoria Falls & Harare are Top Choices for Business & Leisure</h3>
+                <span class="blog-date">January 12, 2026</span>
+                <p class="blog-excerpt">Combining high-speed fiber executive suites with scenic nature: why business
+                  travelers are flocking to short-term luxury rentals.</p>
+                <a href="#" class="blog-read-more" data-article="3">Read More »</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========== HOST DASHBOARD VIEW ========== -->
+    <div id="landlord-view" class="host-dashboard-view">
+      <div class="content-container">
+        <!-- Host Banner -->
+        <div class="host-banner">
           <div>
-            <h3 class="section-title">Explore listings in Zimbabwe</h3>
-            <p class="section-subtitle">Verified houses, apartments, and rooms available for days, months, or years.</p>
+            <h2 id="landlord-greeting" style="font-size: 2rem; margin-bottom: 6px;">Welcome back, Host!</h2>
+            <p style="color: var(--ac-muted);">Manage your properties, view guest bookings, and track your rental
+              income.</p>
+          </div>
+          <button class="ac-button" id="open-listing-modal-btn">List New Property</button>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-val" id="landlord-revenue-stat">$0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Bookings</div>
+            <div class="stat-val" id="landlord-bookings-stat">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active Listings</div>
+            <div class="stat-val" id="active-listings-count">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Rating</div>
+            <div class="stat-val">4.96★</div>
           </div>
         </div>
 
-        <div class="properties-grid" id="properties-container">
-          <!-- Dynamically populated via JS -->
+        <!-- Host Properties -->
+        <div style="margin-bottom: 40px;">
+          <h3 style="font-size: 1.6rem; margin-bottom: 20px;">Your Properties</h3>
+          <div class="outer-container" id="landlord-properties-container" style="flex-wrap: wrap;"></div>
         </div>
-      </div>
-    </section>
 
-    <!-- LANDLORD DASHBOARD VIEW -->
-    <section id="landlord-view" class="view-section">
-      <!-- Hosting Header Hero -->
-      <div class="hosting-hero">
-        <div class="hosting-hero-content">
-          <h2 id="landlord-greeting">Welcome back, Host!</h2>
-          <p>List Zimbabwe's best BnBs or manage rental homes for long-term lease terms.</p>
-        </div>
-        <button class="btn-primary" id="open-listing-modal-btn">
-          Post a Property
-        </button>
-      </div>
-
-      <!-- Dashboard Stats/Analytics -->
-      <div class="hosting-analytics">
-        <div class="analytics-card">
-          <h4>Total Revenue</h4>
-          <p class="number" id="landlord-revenue-stat">$0</p>
-        </div>
-        <div class="analytics-card">
-          <h4>Total Bookings</h4>
-          <p class="number" id="landlord-bookings-stat">0</p>
-        </div>
-        <div class="analytics-card">
-          <h4>Active Listings</h4>
-          <p class="number" id="active-listings-count">0</p>
-        </div>
-        <div class="analytics-card">
-          <h4>Average Rating</h4>
-          <p class="number">4.9★</p>
+        <!-- Bookings Table -->
+        <div id="landlord-bookings-section">
+          <h3 style="font-size: 1.6rem; margin-bottom: 20px;">Recent Bookings</h3>
+          <div style="background: #FFF; border-radius: 8px; border: 1px solid var(--ac-border); overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem;">
+              <thead>
+                <tr
+                  style="background: var(--ac-bg-section); border-bottom: 1px solid var(--ac-border); font-family: var(--font-heading);">
+                  <th style="padding: 14px 18px;">Reference</th>
+                  <th style="padding: 14px 18px;">Property</th>
+                  <th style="padding: 14px 18px;">Guest</th>
+                  <th style="padding: 14px 18px;">Check-in</th>
+                  <th style="padding: 14px 18px;">Check-out</th>
+                  <th style="padding: 14px 18px;">Amount</th>
+                  <th style="padding: 14px 18px;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="landlord-bookings-container"></tbody>
+            </table>
+          </div>
         </div>
       </div>
-
-      <!-- Landlord Listing List -->
-      <div class="dashboard-listings-section">
-        <div class="hosting-listings-header">
-          <h3 class="section-title">Your Current Properties</h3>
-        </div>
-        <div class="properties-grid" id="landlord-properties-container">
-          <!-- Dynamically populated via JS representing landlord listings -->
-        </div>
-      </div>
-
-      <!-- Landlord Inbound Bookings Section -->
-      <div class="dashboard-bookings-section" style="margin-top: 48px;">
-        <div class="hosting-listings-header">
-          <h3 class="section-title">Reservations & Lease Inquiries</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 4px;">Recent bookings made by verified tenants on your listings.</p>
-        </div>
-        <div id="landlord-bookings-container" class="landlord-bookings-list">
-          <!-- Dynamically populated via JS -->
-        </div>
-      </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- MODAL: LOGIN / SIGN-UP -->
-  <div class="modal-overlay" id="auth-modal">
-    <div class="modal-container">
-      <button class="modal-close-btn" id="close-auth-btn" aria-label="Close Modal">×</button>
-
-      <!-- Modal Navigation Tabs -->
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-login-btn">Log In</button>
-        <button class="auth-tab" id="tab-signup-btn">Sign Up</button>
-      </div>
-
-      <!-- Demo Accounts Quick Fill Helper -->
-      <div class="demo-accounts-helper">
-        <span>Quick Demo Login:</span>
-        <div class="demo-chips">
-          <button type="button" class="demo-chip" id="demo-landlord-btn">Host Tendai (Landlord)</button>
-          <button type="button" class="demo-chip" id="demo-tenant-btn">Farai (Tenant)</button>
-        </div>
-      </div>
-
-      <div class="modal-body">
-        <form id="auth-form">
-          <!-- Display name field (Sign up only) -->
-          <div class="form-group" id="auth-name-group" style="display: none;">
-            <label for="auth-name">Full Name</label>
-            <input type="text" class="form-input" id="auth-name" placeholder="e.g. Tendai Moyo">
-          </div>
-
-          <div class="form-group">
-            <label for="auth-email">Email Address</label>
-            <input type="email" class="form-input" id="auth-email" placeholder="name@example.co.zw" required>
-          </div>
-
-          <div class="form-group">
-            <label for="auth-password">Password</label>
-            <input type="password" class="form-input" id="auth-password" placeholder="••••••••" required>
-          </div>
-
-          <!-- Role Selector (Sign up only) -->
-          <div class="form-group" id="auth-role-group" style="display: none;">
-            <label>Select Your Profile Role</label>
-            <div class="role-toggle-group">
-              <label class="role-option">
-                <input type="radio" name="auth-role" value="tenant" checked>
-                <div class="role-card">
-                  <svg viewBox="0 0 32 32" width="24" height="24">
-                    <path d="M16 4a5 5 0 1 1-5 5 5 5 0 0 1 5-5zm0 12c-6.1 0-11 3.1-11 7v3h22v-3c0-3.9-4.9-7-11-7z" />
-                  </svg>
-                  <span>I am a Tenant</span>
-                </div>
-              </label>
-              <label class="role-option">
-                <input type="radio" name="auth-role" value="landlord">
-                <div class="role-card">
-                  <svg viewBox="0 0 32 32" width="24" height="24">
-                    <path
-                      d="M16,2.3L2,14.6l1.3,1.5L5,14.6V28c0,1.1,.9,2,2,2h6v-8h6v8h6c1.1,0,2-.9,2-2V14.6l1.7,1.5,1.3-1.5L16,2.3z" />
-                  </svg>
-                  <span>I am a Landlord</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px;" id="auth-submit-btn">
-            Log In
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: ADD LISTING FORM (LANDLORD) -->
-  <div class="modal-overlay" id="listing-modal">
-    <div class="modal-container large">
-      <button class="modal-close-btn" id="close-listing-btn" aria-label="Close Modal">×</button>
-      <div class="detail-modal-header">
-        <h2>Post a Property</h2>
-        <p style="color: var(--text-muted);">Fill in details to list your space on the ROJA marketplace.</p>
-      </div>
-
-      <div class="modal-body" style="padding-top: 24px;">
-        <form id="add-property-form">
-          <div class="form-group">
-            <label for="prop-title">Property Title</label>
-            <input type="text" class="form-input" id="prop-title" placeholder="e.g. Modern Double Storey Townhouse"
-              required>
-          </div>
-
-          <div class="form-group">
-            <label for="prop-description">Detailed Description</label>
-            <textarea class="form-input" id="prop-description" rows="4"
-              placeholder="Describe the space, solar backup availability, security, borehole water access..."
-              required></textarea>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="prop-location">Location (City)</label>
-              <select class="form-input" id="prop-location" required>
-                <option value="Harare">Harare</option>
-                <option value="Bulawayo">Bulawayo</option>
-                <option value="Victoria Falls">Victoria Falls</option>
-                <option value="Nyanga">Nyanga</option>
-                <option value="Kariba">Kariba</option>
-                <option value="Mutare">Mutare</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="prop-category">Property Category</label>
-              <select class="form-input" id="prop-category">
-                <option value="suburban">Suburbs</option>
-                <option value="stays">BnBs / Suites</option>
-                <option value="highlands">Highlands / Cabins</option>
-                <option value="waterfront">Lakes & Resorts</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="prop-rent-type">Rental Type</label>
-              <select class="form-input" id="prop-rent-type">
-                <option value="night">BnB (Short term / per night)</option>
-                <option value="month">Lease (Long term / per month)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="prop-price">Price ($ USD)</label>
-              <input type="number" class="form-input" id="prop-price" min="1"
-                placeholder="e.g. 150 (nightly) or 1200 (monthly)" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="prop-guests">Max Guests / Occupants</label>
-              <select class="form-input" id="prop-guests">
-                <option value="1">1 person</option>
-                <option value="2">2 people</option>
-                <option value="3">3 people</option>
-                <option value="4">4+ people</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Drag and Drop Image upload widget -->
-          <div class="form-group">
-            <label>Property Pictures</label>
-            <div class="upload-zone" id="upload-zone">
-              <svg viewBox="0 0 32 32" width="40" height="40">
-                <path
-                  d="M16 2A14 14 0 1 0 30 16 14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-17h-2v6H9v2h6v6h2v-6h6v-2h-6z" />
-              </svg>
-              <p>Drag & drop pictures here, or <strong style="color: var(--primary);">browse files</strong></p>
-              <span>Supports JPG, PNG (Max 5MB)</span>
-              <input type="file" id="prop-file-input" accept="image/*" style="display: none;" multiple>
-            </div>
-            <!-- Live Preview container -->
-            <div class="image-preview-container" id="upload-preview-container"></div>
-          </div>
-
-          <!-- Amenities Selection -->
-          <div class="form-group" style="margin-top: 24px;">
-            <label>Amenities Offered</label>
-            <div class="amenities-grid">
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Solar Power">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path d="M16 2l3.4 9.8h10.6l-8.6 6.3 3.3 9.9-8.7-6.3-8.7 6.3 3.3-9.9-8.6-6.3h10.6z" />
-                  </svg>
-                  <span>Solar Backup</span>
-                </div>
-              </label>
-
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Borehole Water">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path
-                      d="M16 2C8.3 2 2 8.3 2 16c0 5 2.6 9.3 6.6 11.8l1.4-1.4C6.5 24.3 4 20.4 4 16c0-6.6 5.4-12 12-12s12 5.4 12 12c0 4.4-2.5 8.3-6 10.4l1.4 1.4c4-2.5 6.6-6.8 6.6-11.8 0-7.7-6.3-14-14-14z" />
-                  </svg>
-                  <span>Borehole</span>
-                </div>
-              </label>
-
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Wifi">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path
-                      d="M16,4C10.5,4,5.4,6.2,1.7,9.9l1.4,1.4C6.4,8,11,6,16,6s9.6,2,12.9,5.3l1.4-1.4C26.6,6.2,21.5,4,16,4z M16,10c-3.9,0-7.5,1.5-10.2,4.2l1.4,1.4c2.3-2.3,5.4-3.6,8.8-3.6s6.5,1.3,8.8,3.6l1.4-1.4C23.5,11.5,19.9,10,16,10z" />
-                  </svg>
-                  <span>Free Wifi</span>
-                </div>
-              </label>
-
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Kitchen">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path
-                      d="M12,2h-2v4H6c-1.1,0-2,.9-2,2v20c0,1.1,.9,2,2,2h20c1.1,0,2-.9,2-2V8c0-1.1-.9-2-2-2h-4V2h-2v4H12V2z M26,28H6V8h20V28z" />
-                  </svg>
-                  <span>Kitchen</span>
-                </div>
-              </label>
-
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Security System">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path
-                      d="M16 2L4 7v10c0 5.5 5.1 10.7 12 13 6.9-2.3 12-7.5 12-13V7L16 2zm10 15c0 4.4-3.9 8.6-10 10.7-6.1-2.1-10-6.3-10-10.7V8.6l10-4.2 10 4.2V17z" />
-                  </svg>
-                  <span>Secured</span>
-                </div>
-              </label>
-
-              <label class="amenity-checkbox">
-                <input type="checkbox" name="amenity" value="Car Parking">
-                <div class="amenity-label">
-                  <svg viewBox="0 0 32 32" width="16" height="16">
-                    <path
-                      d="M22,12H10v8h12v-8z M24,8c1.1,0,2,.9,2,2v12c0,1.1-.9,2-2,2H8c-1.1,0-2-.9-2-2V10c0-1.1,.9-2,2-2H24z" />
-                  </svg>
-                  <span>Parking</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; margin-top: 32px;"
-            id="add-property-submit-btn">
-            Submit New Listing
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: PROPERTY DETAIL VIEW (WITH INTERACTIVE BOOKING) -->
-  <div class="modal-overlay" id="detail-modal">
-    <div class="modal-container detail-modal">
-      <button class="modal-close-btn" id="close-detail-btn" aria-label="Close Modal">×</button>
-
-      <!-- Detail Header -->
-      <div class="detail-modal-header">
-        <h2 id="detail-title">Borrowdale Brooke Mansion</h2>
-        <div class="detail-modal-meta">
-          <span class="rating">
-            <svg viewBox="0 0 32 32" width="16" height="16">
-              <path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z" />
-            </svg>
-            <span id="detail-rating-label">4.9 (48 reviews)</span>
-          </span>
-          <span>•</span>
-          <span class="location" id="detail-location-label">Harare, Zimbabwe</span>
-        </div>
-      </div>
-
-      <!-- Detail Image Gallery Grid -->
-      <div class="detail-gallery">
-        <div class="gallery-grid">
-          <div class="gallery-main">
-            <img id="detail-img-main" src="" alt="Main Property Image">
-          </div>
-          <div class="gallery-side">
-            <div class="gallery-side-img">
-              <img id="detail-img-side-1" src="" alt="Side View 1">
-            </div>
-            <div class="gallery-side-img">
-              <img id="detail-img-side-2" src="" alt="Side View 2">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Detail Body (2 Columns) -->
-      <div class="detail-modal-body">
-        <!-- Col 1: Property Info, Description, Amenities -->
-        <div class="property-description-container">
-          <div class="host-info">
-            <div class="host-avatar flex-center" id="detail-host-avatar">TN</div>
-            <div class="host-details">
-              <h3 id="detail-host-name">Hosted by Tendai</h3>
-              <p>Verified Local Landlord • Member since 2023</p>
-            </div>
-          </div>
-
-          <div class="property-description">
-            <h3>About this rental</h3>
-            <p id="detail-description-text">Enjoy the beautiful, minimalist layout of this property...</p>
-          </div>
-
-          <div class="property-amenities-section">
-            <h3>What this place offers</h3>
-            <div class="amenities-list" id="detail-amenities-list">
-              <!-- Dynamically populated via JS -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Col 2: Reservation Widget -->
-        <div class="booking-widget-wrapper">
-          <div class="booking-widget-card">
-            <div class="booking-header">
-              <div class="booking-price">
-                $<span id="booking-card-price">1200</span> <span id="booking-card-unit">/ month</span>
-              </div>
-              <div class="property-rating">
-                <svg viewBox="0 0 32 32" width="14" height="14">
-                  <path d="M16 2l4.85 9.83L31.7 13.3l-8 7.8 1.88 10.9L16 26.85 6.42 32l1.88-10.9-8-7.8 10.85-1.47z" />
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" id="contact-section">
+    <div class="content-container">
+      <div class="footer-top">
+        <div class="footer-enquiry">
+          <h3>GENERAL ENQUIRY</h3>
+          <ul class="enquiry-list">
+            <li>
+              <a href="tel:+263772100200">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <span id="booking-card-rating">4.9</span>
-              </div>
-            </div>
-
-            <form id="booking-form">
-              <div class="booking-form">
-                <div class="booking-dates">
-                  <div class="booking-date-field">
-                    <label for="book-checkin" id="book-date-in-label">Move-in Date</label>
-                    <input type="date" id="book-checkin" required>
-                  </div>
-                  <div class="booking-date-field">
-                    <label for="book-checkout" id="book-date-out-label">Move-out Date</label>
-                    <input type="date" id="book-checkout" required>
-                  </div>
-                </div>
-                <div class="booking-guests-field">
-                  <label for="book-guests" id="book-guests-label">Occupants</label>
-                  <select id="book-guests">
-                    <option value="1">1 person</option>
-                    <option value="2">2 people</option>
-                    <option value="3">3 people</option>
-                    <option value="4">4+ people</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Booking Pricing Details (Shows when dates are filled) -->
-              <div class="booking-summary-list" id="booking-price-summary" style="display: none;">
-                <div class="booking-summary-row">
-                  <span id="summary-price-nights">$1200 x 3 months</span>
-                  <span id="summary-price-base">$3600</span>
-                </div>
-                <!-- Security deposit only shown on monthly leases -->
-                <div class="booking-summary-row" id="summary-deposit-row" style="display: none;">
-                  <span>Refundable Security Deposit</span>
-                  <span id="summary-price-deposit">$1200</span>
-                </div>
-                <div class="booking-summary-row">
-                  <span>ROJA platform fee</span>
-                  <span id="summary-price-fee">$50</span>
-                </div>
-                <div class="booking-summary-row total">
-                  <span>Total Due</span>
-                  <span id="summary-price-total">$4850</span>
-                </div>
-              </div>
-
-              <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;"
-                id="booking-widget-submit-btn">
-                Reserve Place
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: MY BOOKINGS (TENANT VIEW) -->
-  <div class="modal-overlay" id="bookings-modal">
-    <div class="modal-container large">
-      <button class="modal-close-btn" id="close-bookings-btn" aria-label="Close Modal">×</button>
-      <div class="detail-modal-header">
-        <h2>My Bookings & Stays</h2>
-        <p style="color: var(--text-muted);">View, track, and manage your reserved stays and rental leases in Zimbabwe.</p>
-      </div>
-
-      <div class="modal-body" style="padding: 24px;">
-        <div id="tenant-bookings-list" class="tenant-bookings-grid">
-          <!-- Dynamically populated via JS -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#help">Help Center</a></li>
-            <li><a href="#rules">Rental Regulations (Zim)</a></li>
-            <li><a href="#safety">Tenant Safety</a></li>
-            <li><a href="#cancellation">Cancellation & Leases</a></li>
+                <span>+263 77 210 0200 / +27 87 702 1574</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:bookings@roja.co.zw">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>bookings@roja.co.zw</span>
+              </a>
+            </li>
           </ul>
         </div>
-
-        <div class="footer-col">
-          <h4>ROJA Zimbabwe</h4>
-          <ul>
-            <li><a href="#about">About ROJA</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#news">Newsroom</a></li>
-            <li><a href="#contact">Contact Support</a></li>
-          </ul>
+        <div class="footer-logo-block">
+          <a href="#" class="footer-logo">
+            <span class="logo-name">ACCOMMODATION</span>
+            <span class="logo-sub">CONNECT ZW</span>
+          </a>
         </div>
       </div>
-
+      <div class="footer-divider"></div>
       <div class="footer-bottom">
-        <p>© 2026 ROJA Zimbabwe, Inc. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#privacy">Privacy</a>
-          <a href="#terms">Terms</a>
-          <a href="#sitemap">Sitemap</a>
+        <div class="footer-copyright">
+          <span>© Copyright | </span>
+          <a href="#" id="privacy-link">Privacy Policy</a>
+          <span> | </span>
+          <a href="#" id="terms-link">T’s & C’s</a>
+        </div>
+        <div class="footer-socials">
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path
+                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12z" />
+            </svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL: GENERIC INFO / CHATBOT -->
-  <div class="modal-overlay" id="info-modal">
-    <div class="modal-container">
-      <button class="modal-close-btn" id="close-info-btn" aria-label="Close Modal">×</button>
-      <div class="modal-header">
-        <h2 id="info-title">Title</h2>
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- 1. PROPERTY DETAIL & BOOKING / VIEWING MODAL -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-card detail-card">
+      <button class="modal-close" id="close-detail-btn" aria-label="Close">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M2 2l12 12M14 2L2 14" />
+        </svg>
+      </button>
+      <div class="detail-gallery" id="detail-gallery">
+        <img id="detail-main-img" src="" alt="Property detail">
+        <div class="detail-badge-pill" id="detail-type-badge">FOR RENT</div>
       </div>
-      <div class="modal-body" id="info-content">
-        <!-- Dynamic content goes here -->
+      <div class="detail-body">
+        <div class="detail-main-info">
+          <div class="detail-location" id="detail-location"></div>
+          <h2 class="detail-title" id="detail-title"></h2>
+          <div class="detail-meta" id="detail-meta"></div>
+          <p class="detail-description" id="detail-description"></p>
+
+          <!-- SPECIFICATIONS BAR (For Sale & Leases) -->
+          <div class="detail-specs-bar" id="detail-specs-bar">
+            <div class="spec-tile">
+              <span class="spec-label">Bedrooms</span>
+              <span class="spec-val" id="detail-spec-beds">3 Beds</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-label">Bathrooms</span>
+              <span class="spec-val" id="detail-spec-baths">2 Baths</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-label">Stand / Land Size</span>
+              <span class="spec-val" id="detail-spec-stand">1,500 m²</span>
+            </div>
+            <div class="spec-tile">
+              <span class="spec-label">Legal Ownership</span>
+              <span class="spec-val title-deeds-val" id="detail-spec-deeds">Clean Title Deeds</span>
+            </div>
+          </div>
+
+          <!-- DEDICATED SELLER / LANDLORD CONTACT CARD -->
+          <div class="seller-contact-card" id="detail-seller-card">
+            <div class="seller-card-top">
+              <div class="seller-avatar" id="detail-seller-avatar">TM</div>
+              <div class="seller-info-meta">
+                <div class="seller-role-badge" id="detail-seller-role">Verified Seller</div>
+                <h3 class="seller-name" id="detail-seller-name">Tendai Moyo</h3>
+                <span class="seller-deeds-badge" id="detail-seller-deeds">Title Deeds on File</span>
+              </div>
+            </div>
+            <p class="seller-direct-notice">Direct contact available. Call, WhatsApp, or email the owner directly for
+              viewings, negotiations, or inquiries:</p>
+            <div class="seller-actions-row">
+              <a href="tel:+263772100200" class="seller-action-btn btn-call" id="detail-call-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span id="detail-phone-text">Call Seller</span>
+              </a>
+              <a href="https://wa.me/263772100200" target="_blank" rel="noopener" class="seller-action-btn btn-whatsapp"
+                id="detail-whatsapp-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                  <path
+                    d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.44 0-2.85-.38-4.08-1.1l-.29-.17-3.03.79.81-2.95-.19-.3a8.18 8.18 0 0 1-1.26-4.32c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.19-.09-1.12-.55-1.3-.61-.17-.07-.3-.1-.43.1-.12.19-.48.61-.59.73-.11.12-.22.14-.41.05-.19-.09-.8-.3-1.53-.94-.56-.5-.94-1.12-1.05-1.31-.11-.19-.01-.29.08-.38.08-.09.19-.22.28-.33.09-.11.13-.19.19-.31.06-.13.03-.24-.02-.33-.04-.09-.43-1.03-.59-1.42-.15-.37-.31-.32-.43-.33-.11-.01-.24-.01-.36-.01-.13 0-.33.05-.5.24-.17.19-.66.65-.66 1.58s.68 1.83.77 1.96c.1.12 1.34 2.05 3.25 2.87.45.2.81.31 1.09.4.46.15.88.13 1.21.08.37-.05 1.12-.46 1.28-.9.16-.44.16-.82.11-.9-.05-.08-.18-.13-.37-.22z" />
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="mailto:tendai.moyo@roja.co.zw" class="seller-action-btn btn-email" id="detail-email-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span id="detail-email-text">Email</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="amenities-section">
+            <h4>Property Features &amp; Amenities</h4>
+            <div class="amenities-grid" id="detail-amenities"></div>
+          </div>
+        </div>
+
+        <div class="detail-sidebar">
+          <!-- RENTAL BOOKING WIDGET (For Stays & Leases) -->
+          <div class="booking-widget" id="rental-booking-widget">
+            <div class="bw-price-wrap">
+              <span class="bw-price" id="bw-price">$0</span>
+              <span class="bw-unit" id="bw-unit">/ night</span>
+            </div>
+            <div class="bw-date-grid">
+              <div class="bw-field">
+                <label for="book-checkin">Check-in</label>
+                <input type="date" id="book-checkin">
+              </div>
+              <div class="bw-field">
+                <label for="book-checkout">Check-out</label>
+                <input type="date" id="book-checkout">
+              </div>
+            </div>
+            <div class="bw-field">
+              <label for="book-guests">Guests</label>
+              <select id="book-guests">
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="5">5+ guests</option>
+              </select>
+            </div>
+            <div class="bw-summary" id="booking-price-summary" style="display:none">
+              <div class="bw-summary-row">
+                <span id="summary-price-nights">Rate x nights</span>
+                <span id="summary-price-base">—</span>
+              </div>
+              <div class="bw-summary-row">
+                <span>Service & Management fee</span>
+                <span id="summary-price-fee">—</span>
+              </div>
+              <div class="bw-summary-row total">
+                <span>Total</span>
+                <span id="summary-price-total">—</span>
+              </div>
+            </div>
+            <button class="ac-button full-width" id="booking-submit-btn">Reserve Now</button>
+            <p style="font-size: 0.8rem; color: var(--ac-muted); text-align: center; margin-top: 6px;">Instant
+              confirmation · Verified Landlord</p>
+          </div>
+
+          <!-- REAL ESTATE PURCHASE & VIEWING WIDGET (For Houses For Sale) -->
+          <div class="booking-widget sale-widget" id="sale-inquiry-widget" style="display:none">
+            <div class="bw-price-wrap">
+              <span class="bw-price" id="sale-bw-price">$485,000</span>
+              <span class="bw-unit" style="font-weight: 700; color: var(--ac-primary);">Total Purchase</span>
+            </div>
+            <div class="sale-badge-row">
+              <span class="badge-title-deeds" id="sale-deeds-tag">Title Deeds on Hand</span>
+            </div>
+
+            <div class="viewing-schedule-box">
+              <h4 class="viewing-heading">Schedule a Private Viewing</h4>
+              <p style="font-size: 0.82rem; color: var(--ac-muted); margin-bottom: 12px;">Submit your viewing
+                appointment directly to the seller:</p>
+              <div class="bw-field">
+                <label for="viewing-date">Preferred Viewing Date</label>
+                <input type="date" id="viewing-date">
+              </div>
+              <div class="bw-field" style="margin-top: 8px;">
+                <label for="viewing-buyer-name">Buyer Full Name</label>
+                <input type="text" id="viewing-buyer-name" placeholder="e.g. Farai Sibanda">
+              </div>
+              <div class="bw-field" style="margin-top: 8px;">
+                <label for="viewing-buyer-phone">Phone / WhatsApp</label>
+                <input type="tel" id="viewing-buyer-phone" placeholder="e.g. +263 77 210 0200">
+              </div>
+              <div class="bw-field" style="margin-top: 8px;">
+                <label for="viewing-finance">Purchase / Financing Status</label>
+                <select id="viewing-finance">
+                  <option value="Cash Buyer">Cash Buyer (Ready Funds)</option>
+                  <option value="Pre-approved Mortgage">Pre-approved Mortgage</option>
+                  <option value="Subject to Property Sale">Subject to Property Sale</option>
+                  <option value="Corporate / Trust">Corporate / Trust Acquisition</option>
+                </select>
+              </div>
+              <button class="ac-button full-width" id="viewing-submit-btn" style="margin-top: 14px;">Schedule Private
+                Viewing</button>
+              <p style="font-size: 0.78rem; color: var(--ac-muted); text-align: center; margin-top: 6px;">Direct Seller
+                Notification · Free &amp; Confidential</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Vanilla JavaScript Logic -->
+  <!-- 2. DATE PICKER POPUP MODAL -->
+  <div class="modal-overlay" id="date-picker-modal">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3>Select Dates</h3>
+        <button class="modal-close" id="close-dates-btn" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M2 2l12 12M14 2L2 14" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="filter-checkin">Check-in / Viewing</label>
+            <input type="date" id="filter-checkin">
+          </div>
+          <div class="form-group">
+            <label for="filter-checkout">Check-out</label>
+            <input type="date" id="filter-checkout">
+          </div>
+        </div>
+        <button class="ac-button" id="apply-dates-btn" style="margin-top: 10px;">Apply Dates</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. LIST / SELL YOUR PROPERTY MODAL -->
+  <div class="modal-overlay" id="listing-modal">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3>List Your Property (Sale or Rental)</h3>
+        <button class="modal-close" id="close-listing-btn" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M2 2l12 12M14 2L2 14" />
+          </svg>
+        </button>
+      </div>
+      <form class="modal-form" id="add-property-form">
+        <div class="form-group">
+          <label for="prop-listing-purpose">Listing Purpose *</label>
+          <select id="prop-listing-purpose" required>
+            <option value="sale">Selling Property (Total Ownership For Sale)</option>
+            <option value="rent">Renting (Short-stay holiday BnB / Monthly lease)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="prop-title">Property Title *</label>
+          <input type="text" id="prop-title" placeholder="e.g. 5-Bedroom Luxury Mansion in Borrowdale Brooke" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prop-location">City / Location *</label>
+            <select id="prop-location" required>
+              <option value="Harare">Harare</option>
+              <option value="Victoria Falls">Victoria Falls</option>
+              <option value="Bulawayo">Bulawayo</option>
+              <option value="Nyanga">Nyanga</option>
+              <option value="Kariba">Kariba</option>
+              <option value="Mutare">Mutare</option>
+              <option value="Masvingo">Masvingo</option>
+            </select>
+          </div>
+          <div class="form-group" id="group-rent-type" style="display:none">
+            <label for="prop-rent-type">Rental Term</label>
+            <select id="prop-rent-type">
+              <option value="night">Short-stay (per night)</option>
+              <option value="month">Monthly lease</option>
+            </select>
+          </div>
+          <div class="form-group" id="group-title-deeds">
+            <label for="prop-title-deeds">Title Deeds / Ownership Document *</label>
+            <select id="prop-title-deeds">
+              <option value="Clean Title Deeds on Hand">Clean Title Deeds on Hand</option>
+              <option value="Title Deeds in Company Name">Title Deeds in Company Name</option>
+              <option value="Cession (Council / Developer)">Cession (Council / Developer)</option>
+              <option value="Deed of Grant / Transfer in Progress">Deed of Grant / Transfer in Progress</option>
+              <option value="Verified Residential Lease">Verified Residential Lease</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prop-price" id="label-prop-price">Total Asking Price (USD) *</label>
+            <input type="number" id="prop-price" placeholder="450000" min="10" required>
+          </div>
+          <div class="form-group">
+            <label for="prop-stand-size">Stand / Land Size</label>
+            <input type="text" id="prop-stand-size" placeholder="e.g. 2,400 m² stand or 1 Acre">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prop-bedrooms">Bedrooms</label>
+            <input type="number" id="prop-bedrooms" placeholder="4" min="1" max="30" value="4">
+          </div>
+          <div class="form-group">
+            <label for="prop-bathrooms">Bathrooms</label>
+            <input type="number" id="prop-bathrooms" placeholder="3" min="1" max="20" value="3">
+          </div>
+          <div class="form-group">
+            <label for="prop-guests">Max Capacity (Guests)</label>
+            <input type="number" id="prop-guests" placeholder="8" min="1" max="50" value="8">
+          </div>
+        </div>
+
+        <!-- SELLER / LANDLORD CONTACT INFORMATION SECTION -->
+        <div class="form-section-divider">
+          <h4>Seller / Landlord Direct Contacts</h4>
+          <p style="font-size: 0.8rem; color: var(--ac-muted); margin-bottom: 10px;">These contacts will be published on
+            your listing so buyers & tenants can call and WhatsApp you directly.</p>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prop-contact-name">Contact Person / Owner Name *</label>
+            <input type="text" id="prop-contact-name" placeholder="e.g. Tendai Moyo" required>
+          </div>
+          <div class="form-group">
+            <label for="prop-seller-role">Your Role *</label>
+            <select id="prop-seller-role" required>
+              <option value="Direct Property Owner">Direct Property Owner / Seller</option>
+              <option value="Sole Mandate Agent">Sole Mandate Agent</option>
+              <option value="Verified Landlord">Verified Landlord</option>
+              <option value="Family Representative">Family Representative</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prop-contact-phone">Phone Number (Call) *</label>
+            <input type="tel" id="prop-contact-phone" placeholder="e.g. +263 77 210 0200" required>
+          </div>
+          <div class="form-group">
+            <label for="prop-contact-whatsapp">WhatsApp Number *</label>
+            <input type="tel" id="prop-contact-whatsapp" placeholder="e.g. +263 77 210 0200" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="prop-contact-email">Contact Email Address *</label>
+          <input type="email" id="prop-contact-email" placeholder="e.g. seller@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="prop-image-url">Photo Image URL</label>
+          <input type="url" id="prop-image-url" placeholder="https://images.unsplash.com/photo-...">
+        </div>
+        <div class="form-group">
+          <label for="prop-description">Property Description &amp; Highlights *</label>
+          <textarea id="prop-description" rows="3"
+            placeholder="Describe title deeds, architecture, borehole, solar backup, finishes, and neighborhood security..."
+            required></textarea>
+        </div>
+        <button type="submit" class="ac-button" style="margin-top: 10px;">Publish Listing (Live Instantly)</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. GENERAL ENQUIRY MODAL (Gravity Form style) -->
+  <div class="modal-overlay" id="enquiry-modal">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3>Enquire Now</h3>
+        <button class="modal-close" id="close-enquiry-btn" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M2 2l12 12M14 2L2 14" />
+          </svg>
+        </button>
+      </div>
+      <form class="modal-form" id="enquiry-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="enquiry-first-name">First Name *</label>
+            <input type="text" id="enquiry-first-name" placeholder="First Name" required>
+          </div>
+          <div class="form-group">
+            <label for="enquiry-last-name">Last Name *</label>
+            <input type="text" id="enquiry-last-name" placeholder="Last Name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="enquiry-email">Email Address *</label>
+          <input type="email" id="enquiry-email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label for="enquiry-location">Property / Destination of Interest</label>
+          <input type="text" id="enquiry-location"
+            placeholder="e.g. Victoria Falls, Harare, or general property listing">
+        </div>
+        <div class="form-group">
+          <label for="enquiry-message">Message</label>
+          <textarea id="enquiry-message" rows="3" placeholder="How can our team help you?"></textarea>
+        </div>
+        <button type="submit" class="ac-button" style="margin-top: 10px;">Submit Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. AUTHENTICATION MODAL -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card auth-card">
+      <div class="modal-header">
+        <h3 id="auth-modal-title">Sign In</h3>
+        <button class="modal-close" id="close-auth-btn" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M2 2l12 12M14 2L2 14" />
+          </svg>
+        </button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login-btn">Sign In</button>
+        <button class="auth-tab" id="tab-signup-btn">Register</button>
+      </div>
+      <form class="modal-form" id="auth-form" style="padding-top: 0;">
+        <div class="form-group" id="auth-name-group" style="display:none">
+          <label for="auth-name">Full Name</label>
+          <input type="text" id="auth-name" placeholder="Tendai Moyo" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="auth-email">Email Address</label>
+          <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-password">Password</label>
+          <input type="password" id="auth-password" placeholder="At least 6 characters" autocomplete="current-password"
+            required>
+        </div>
+        <button type="submit" class="ac-button" id="auth-submit-btn" style="margin-top: 6px;">Sign In</button>
+      </form>
+      <div class="auth-demo-bar">
+        <span>Quick Demo Access:</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="demo-btn" id="demo-landlord-btn">Host (Tendai)</button>
+          <button class="demo-btn" id="demo-tenant-btn">Guest (Farai)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. MY BOOKINGS MODAL -->
+  <div class="modal-overlay" id="bookings-modal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>My Bookings</h3>
+        <button class="modal-close" id="close-bookings-btn" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M2 2l12 12M14 2L2 14" />
+          </svg>
+        </button>
+      </div>
+      <div id="tenant-bookings-list" style="padding: 24px; max-height: 60vh; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- 7. WISHLIST / SAVED HOMES DRAWER -->
+  <div class="drawer-overlay" id="wishlist-overlay"></div>
+  <div class="wishlist-drawer" id="wishlist-drawer">
+    <div class="drawer-header">
+      <h3>Saved Properties</h3>
+      <button class="modal-close" id="close-wishlist-drawer" style="position: static;">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M2 2l12 12M14 2L2 14" />
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="wishlist-list">
+      <!-- Rendered dynamically -->
+    </div>
+  </div>
+
   <script src="database.js"></script>
   <script src="script.js"></script>
 </body>
